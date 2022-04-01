@@ -1,0 +1,2 @@
+#!/bin/bash
+wget -r -p -k -e robots=off -U mozilla

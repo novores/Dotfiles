@@ -1,0 +1,8 @@
+#!/sbin/bash
+
+timestamp="$(date +%Y%m%d%H%M%S)"
+targetbase="$HOME/Images/screenshots"
+mkdir -p $targetbase
+[ -d $targetbase ] || exit 1
+scrot -s $targetbase/$timestamp.png 
+/home/noval/.local/bin/scrot-imgck

@@ -1,0 +1,66 @@
+#! /bin/sh
+#  ┏┓ ┏━┓┏━┓╻ ╻┏┳┓
+#  ┣┻┓┗━┓┣━┛┃╻┃┃┃┃
+#  ┗━┛┗━┛╹  ┗┻┛╹ ╹
+
+#bspc monitor -d 1 2 3 4 5 6 7 
+bspc monitor -d     ﳁ 
+#bspc monitor -d TERM WEB CODE MUSIC OFFICE MISC CHAT
+
+# {{{bspc config
+bspc config border_width                3
+bspc config focused_border_color        $(xrdb:color3)      
+bspc config window_gap                  8
+bspc config normal_border_color         "#3C3836"      
+bspc config focus_follows_pointer       false
+
+bspc config split_ratio                 0.5
+bspc config gapless_monocle             true
+bspc config borderless_monocle          true #}}}
+
+# {{{Autostart application
+
+#trigger sxhkd
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+#setting background
+feh --bg-scale ~/Images/Wallpapers/gruvbox_astronaut2.png &
+
+#load config .Xresources
+xrdb .Xresources &
+
+#dunst
+killall dunst;dunstify -t 10000 "Fortune" "$(fortune)"
+
+#polybar
+killall polybar
+#while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+polybar main -c ~/.config/polybar/config.ini &
+
+#set default cursor
+xsetroot -cursor_name left_ptr &
+
+#Autostart
+/usr/bin/lxpolkit & #polkit
+#picom --config ~/.config/picom/picom.conf & #picom
+killall unclutter
+unclutter -root & #autohide cursor
+killall conky
+/home/noval/.local/bin/start_conky & #conky
+killall xautolock
+xautolock -time 5 -locker i3lock-color -notify 5 && echo mem ? /sys/power/state & #trigger lock program}}}
+
+# {{{bspc rule
+bspc rule -a zathura:feh rectangle=800x600+0+0 center=true
+
+bspc rule -a KeePassXC desktop=^6 follow=on state=floating focus=on 
+bspc rule -a mpv state=fullscreen focus=on 
+bspc rule -a feh state=floating center=true
+bspc rule -a Arandr state=floating
+bspc rule -a qutebrowser desktop=^2 follow=on
+bspc rule -a firefox desktop=^2 follow=on
+bspc rule -a TelegramDesktop desktop=^5 follow=on
+bspc rule -a Soffice desktop=^5 follow=on
+bspc rule -a Inkscape desktop=^5 follow=on #}}}
+
+wmname LG3D

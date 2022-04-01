@@ -1,0 +1,23 @@
+[Default Applications]
+x-scheme-handler/tg=userapp-Telegram Desktop-J4L1G1.desktop
+x-scheme-handler/https=qutebrowser.desktop
+x-scheme-handler/http=qutebrowser.desktop
+text/html=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/about=qutebrowser.desktop
+x-scheme-handler/unknown=qutebrowser.desktop
+image/png=feh.desktop
+image/jpeg=feh.desktop
+image/jpg=feh.desktop
+image/svg+xml=org.inkscape.Inkscape.desktop
+text/markdown=nvim.desktop
+text=nvim.desktop
+text/x-changelog=nvim.desktop
+text/plain=nvim.desktop
+text/x-csrc=nvim.desktop
+text/x-lua=nvim.desktop
+application/pdf=org.pwmt.zathura.desktop
+image/x-xcf=gimp.desktop
+application/postscript=nvim.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-SFM190.desktop;userapp-Telegram Desktop-J4L1G1.desktop;

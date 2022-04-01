@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+NoDisplay=true
+Exec=/usr/bin/telegram-desktop -workdir /home/noval/.local/share/TelegramDesktop/ -- %u
+Name=Telegram Desktop
+Comment=Definisi gubahan bagi Telegram Desktop

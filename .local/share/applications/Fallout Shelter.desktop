@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Fallout Shelter
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/588430
+Icon=steam_icon_588430
+Terminal=false
+Type=Application
+Categories=Game;

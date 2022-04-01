@@ -1,0 +1,5 @@
+#!/sbin/bash
+
+conky -c ~/.config/conky/conky.conf  
+#conky -c ~/.config/conky/Smooth_3.conf
+exit 0
