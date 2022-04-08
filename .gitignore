@@ -1,4 +1,6 @@
-*log*
+*.json*
+*.log*
+*.log
 cava*
 freedesktop
 lain
@@ -6,4 +8,3 @@ playlists
 database
 state
 lyrics
-*.json

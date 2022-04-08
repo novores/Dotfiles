@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Please wite your dir with ~/ first
-screenshot_dir = '~/Images/screenshots'
+screenshot_dir = '~/Images/Screenshots'
 Dir.chdir(File.expand_path(screenshot_dir))
 ss_dir = Dir.pwd
 list_file = %x(ls -p | grep -v /)
@@ -11,7 +11,7 @@ target_file_mod = files.last.split("").insert(-5, 'X').join
 
 %x(convert #{target_file} \\( +clone -background black -shadow 50x10+0+10 \\) \
 +swap -background none -layers merge +repage #{target_file_mod}; \
-convert #{target_file_mod} -bordercolor none -border 30 -set gamma 2.2 \
+convert #{target_file_mod} -bordercolor white -border 30 -set gamma 2.2 \
 #{target_file_mod})
 
 puts "SS_DIR: #{ss_dir}"
