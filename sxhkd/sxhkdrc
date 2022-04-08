@@ -7,7 +7,7 @@
 
 # terminal emulator
 super + Return
-    bspc desktop -f ^1 && /home/noval/.local/bin/urxvtdc
+    $HOME/.local/bin/urxvtdc
     
 #rofi menus
 super + d
@@ -15,7 +15,7 @@ super + d
 super + F8
     rofi-wifi-menu
 super + F9
-    rofi -modi p:/home/noval/.local/bin/rofi-power-menu -show p
+    rofi -modi p:$HOME/.local/bin/rofi-power-menu -show p
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -23,7 +23,7 @@ super + Escape
 
 #screenshot
 super + Print
-    $HOME/.local/bin/rofi-screenshot
+    $HOME/.local/bin/screenshot
 
 #shortcut
 super + F1
