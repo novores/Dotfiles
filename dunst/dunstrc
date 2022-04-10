@@ -4,6 +4,8 @@
 
 # See dunst(5) for all configuration options
 # {{{global
+[color]
+color1 = "#3B4252"
 [global]
     ### Display ###{{{
 
@@ -93,7 +95,7 @@
     frame_width = 3
 
     # Defines color of the frame around the notification window.
-    frame_color = "#3C3836"
+    frame_color = "#3B4252" 
 
     # Define a color for the separator.
     # possible values are:
@@ -156,7 +158,7 @@
     #   %%  Literal %
     # Markup is allowed
 #    format = "%s %p\n%b"
-     format = "<span size='x-large' font_desc='JetBrains Mono 7' weight='bold' foreground='#e78a4e'>%s %p</span>\n%b"
+     format = "<span size='x-large' font_desc='JetBrains Mono 7' weight='bold' foreground='#8FBCBB'>%s %p</span>\n%b"
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
     alignment = center 
@@ -300,8 +302,8 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#282828"
-    foreground = "#458588"
+    background = "#2E3440"
+    foreground = "#D8DEE9"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #new_icon = /path/to/icon
@@ -309,8 +311,8 @@
 
 #{{{urgency_normal
 [urgency_normal]
-    background = "#32302f"
-    foreground = "#ebdbb2"
+    background = "#2E3440"
+    foreground = "#D8DEE9"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #new_icon = /path/to/icon

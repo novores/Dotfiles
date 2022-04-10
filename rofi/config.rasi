@@ -9,7 +9,7 @@ configuration {
     sidebar-mode:                   true;
 }
 
-@import "colors.rasi"
+@import "nord.rasi"
 
 window {
     transparency:                   "pseudo";
@@ -28,13 +28,13 @@ window {
 prompt {
     enabled:                        true;
     padding:                        10px 15px 10px 15px;
-    background-color:               @yellow-dark;
+    background-color:               @blue-dark;
     text-color:                     @bg;
     font:                           "FiraMono Nerd Font 10";
 }
 
 entry {
-    background-color:               @yellow-dark;
+    background-color:               @blue-dark;
     text-color:                     @bg;
     placeholder-color:              @bg1;
     expand:                         true;
@@ -48,7 +48,7 @@ entry {
 
 inputbar {
     children:                       [ prompt, entry ];
-    background-color:               @yellow;
+    background-color:               @blue;
     text-color:                     #ebdbb2;
     expand:                         false;
     border:                         0px;
@@ -100,7 +100,7 @@ element-text {
 }
 
 element.selected.normal{
-    background-color:               @yellow;
+    background-color:               @blue;
     text-color:                     @bg;
     border:                         0px;
     border-radius:                  0px;

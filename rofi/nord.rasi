@@ -1,0 +1,22 @@
+
+/* colors */
+
+* {
+  bg:    #2E3440;
+  bg1:   #3B4252;
+  bg2:   #434C5E;
+  bg3:   #665c54;
+  bg4:   #4C566A;
+  bg5:   #928374;
+  fg:    #D8DEE9;
+  yellow-dark: #d79921;
+  yellow:      #fabd2f;
+  blue-dark:   #5E81AC;
+  blue:        #81A1C1;
+  green-dark:  #98971a;
+  green:       #b8bb26;
+  red-dark:    #cc241d;
+  red:         #fb4934;
+  magenta-dark:#b16286;
+  magenta:     #d3869b;
+}

@@ -9,9 +9,9 @@ bspc monitor -d     ﳁ 
 
 # {{{bspc config
 bspc config border_width                3
-bspc config focused_border_color        $(xrdb:color3)      
+bspc config focused_border_color        "#88C0D0"  
 bspc config window_gap                  8
-bspc config normal_border_color         "#3C3836"      
+bspc config normal_border_color         "#3B4252" 
 bspc config focus_follows_pointer       false
 
 bspc config split_ratio                 0.5
@@ -24,7 +24,7 @@ bspc config borderless_monocle          true #}}}
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 #setting wallpaper
-feh --bg-scale ~/Images/Wallpapers/wallpaper.png &
+feh --bg-scale ~/Images/Wallpapers/arch-nord.png &
 
 #load config .Xresources
 xrdb .Xresources &

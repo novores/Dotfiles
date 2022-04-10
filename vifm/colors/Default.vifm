@@ -82,7 +82,7 @@ highlight User6 ctermfg=default ctermbg=default
 highlight User7 ctermfg=default ctermbg=default
 highlight User8 ctermfg=default ctermbg=default
 highlight User9 ctermfg=default ctermbg=default
-highlight OtherWin ctermfg=default ctermbg=default
+"highlight OtherWin ctermfg=default ctermbg=default
 highlight LineNr ctermfg=default ctermbg=default
 highlight OddLine ctermfg=default ctermbg=default
 

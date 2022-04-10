@@ -31,6 +31,9 @@ super + F1
 
 super + F2
 	firefox
+
+super + r
+  redshift	
 #}}}
 
 # {{{mpc control
