@@ -1,10 +1,9 @@
-# DOTFILES
+# Intro
+![screenshot](./img/Screenshot.png) 
 it's my personal dotfiles with [gruvbox colorscheme](https://github.com/morhetz/gruvbox">gruvbox colorscheme)
 
 ### Requirements
-- `Awesome WM v4.3`
-  - <a href="https://github.com/lcpz/awesome-freedesktop">awesome-freedesktop</a>
-  - <a href="https://github.com/lcpz/lain">lain</a>
+- bspwm
 - rxvt-unicode
 - urxvt-perl
 - zsh
@@ -14,5 +13,3 @@ it's my personal dotfiles with [gruvbox colorscheme](https://github.com/morhetz/
 - Rofi
 - vifm
 ---
-# AwesomeWM
-inspired from **Powerarrow Dark** in [awesome-copycats](https://github.com/lcpz/awesome-copycats)

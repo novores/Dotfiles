@@ -320,8 +320,8 @@ color1 = "#3B4252"
 
 #{{{urgency_critical
 [urgency_critical]
-    background = "#ff5555"
-    foreground = "#f8f8f2"
+    background = "#BF616A"
+    foreground = "#D8DEE9"
     frame_color = "#ff5555"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable

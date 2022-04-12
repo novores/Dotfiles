@@ -17,6 +17,9 @@ super + F8
 super + F9
     rofi -modi p:$HOME/.local/bin/rofi-power-menu -show p
 
+super + b
+  urxvt -e less ~/help.txt
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd  
@@ -33,7 +36,7 @@ super + F2
 	firefox
 
 super + r
-  redshift	
+  redshift -P	
 #}}}
 
 # {{{mpc control
@@ -97,6 +100,7 @@ super + y
 # swap the current node and the biggest window
 super + g
 	bspc node -s biggest.window
+
 #}}}
 
 # {{{state/flags
