@@ -23,6 +23,7 @@
 *fadeColor: nord3
 
 *.color0: nord1
+! Red
 *.color1: nord11
 *.color2: nord14
 *.color3: nord13
@@ -31,10 +32,14 @@
 *.color6: nord8
 *.color7: nord5
 *.color8: nord3
+! Red
 *.color9: nord11
+! green
 *.color10: nord14
+! yellow
 *.color11: nord13
 *.color12: nord9
+! magenta
 *.color13: nord15
 *.color14: nord7
 *.color15: nord6
