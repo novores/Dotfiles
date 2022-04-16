@@ -1,8 +1,12 @@
 *.json*
 *.log*
 *.log
+<<<<<<< Updated upstream
 *log*
 log
+=======
+*log
+>>>>>>> Stashed changes
 cava*
 freedesktop
 lain
