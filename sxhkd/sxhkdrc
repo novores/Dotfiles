@@ -7,8 +7,7 @@
 
 # terminal emulator
 super + Return
-    $HOME/.local/bin/urxvtdc
-    
+   urxvtc 
 #rofi menus
 super + d
     rofi -show drun	

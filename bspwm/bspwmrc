@@ -46,6 +46,7 @@ xsetroot -cursor_name left_ptr &
 killall unclutter;unclutter -root & #autohide cursor
 killall conky;/home/noval/.local/bin/start_conky & #conky
 killall xautolock;xautolock -time 5 -locker i3lock-color -notify 5 && echo mem ? /sys/power/state & #trigger lock program}}}
+killalll urxvtd;urxvtd -q &
 
 # {{{bspc rule
 bspc rule -a zathura:feh rectangle=800x600+0+0 center=true
