@@ -2,8 +2,12 @@
 *.log*
 *.log
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 *log*
 log
+=======
+*log
+>>>>>>> Stashed changes
 =======
 *log
 >>>>>>> Stashed changes

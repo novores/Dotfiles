@@ -36,7 +36,11 @@ super + F2
 
 super + r
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   redshift -P	
+=======
+  redshift	
+>>>>>>> Stashed changes
 =======
   redshift	
 >>>>>>> Stashed changes
