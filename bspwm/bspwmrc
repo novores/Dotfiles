@@ -24,7 +24,7 @@ bspc config borderless_monocle          true #}}}
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 #setting wallpaper
-feh --bg-scale ~/Images/Wallpapers/arch-nord.png &
+feh --bg-scale ~/Images/Wallpapers/Nordic.jpg &
 
 #load config .Xresources
 xrdb .Xresources &
@@ -42,11 +42,11 @@ xsetroot -cursor_name left_ptr &
 
 #Autostart
 /usr/bin/lxpolkit & #polkit
-#picom --config ~/.config/picom/picom.conf & #picom
+picom --config ~/.config/picom/picom.conf & #picom
 killall unclutter;unclutter -root & #autohide cursor
 killall conky;/home/noval/.local/bin/start_conky & #conky
-killall xautolock;xautolock -time 5 -locker i3lock-color -notify 5 && echo mem ? /sys/power/state & #trigger lock program}}}
-killalll urxvtd;urxvtd -q &
+killall xautolock;xautolock -time 5 -locker $HOME/.local/bin/i3lock-color -notify 5 && echo mem > /sys/power/state & #trigger lock program
+$HOME/noval/.local/bin/urxvtdc
 
 # {{{bspc rule
 bspc rule -a zathura:feh rectangle=800x600+0+0 center=true

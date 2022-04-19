@@ -37,13 +37,6 @@ alias wwr="wormhole-william receive"
 #alias nvim="bspc node --to-desktop ^3 --follow | nvim"
 #alias ncmpcpp="bspc node --to-desktop ^4 --follow | ncmpcpp"
 
-alias ya="yadm add"
-alias yst="yadm status"
-alias yp="yadm push"
-alias yc="yadm commit"
-alias yr="yadm rm"
-alias yls="yadm ls-files"
-
 alias mkdir="mkdir -p"
 alias neo="neofetch"
 alias cowsayf="cowsay $(fortune)"
