@@ -1,0 +1,91 @@
+#!/usr/bin/env sh
+#define variable#{{{
+DOT=$HOME/Dotfiles
+XRESOURCES=$DOT/.Xresources
+BSPWM=$DOT/bspwm/bspwmrc
+CONKY=$DOT/conky/conky.conf
+ROFI=$DOT/rofi/config.rasi
+DUNST=$DOT/dunst/dunstrc 
+VIFM=$DOT/vifm/vifmrc
+#}}}
+
+#COLOR variable
+nord_grey="#434C5E"
+nord_blue="#88C0D0"
+nord_fg="#D8DEE9"
+nord_bg_alt="#3B4252"
+gruvbox_grey="#928374"
+gruvbox_yellow="#fabd2f"
+gruvbox_fg="#ebdbb2"
+gruvbox_bg_alt="#3c3836"
+
+#-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+# change terminal and polybar theme{{{
+echo "toggle theme..."
+cd $HOME
+if grep "\-nord" -q $XRESOURCES; then
+	sed -i --follow-symlinks \
+		's/-nord/-gruvbox/g' $XRESOURCES && echo "change terminal theme [gruvbox]"
+elif grep "\-gruvbox" -q $XRESOURCES; then
+	sed -i --follow-symlinks \
+		's/-gruvbox/-nord/g' $XRESOURCES && echo "change terminal theme [nord]"
+fi #}}}
+
+#change rofi theme#{{{
+if grep "gruvbox" -q $ROFI; then
+	sed -i --follow-symlinks -e \
+		's/gruvbox/nord/' -e 's/yellow/blue/' $ROFI && echo "change rofi theme [nord]"
+
+elif grep "nord" -q $ROFI; then
+	sed -i --follow-symlinks -e \
+		's/nord/gruvbox/' -e 's/blue/yellow/' $ROFI && echo "change rofi theme [gruvbox]"
+fi #}}}
+
+# change bspwm theme{{{
+if grep -e $(echo $gruvbox_grey) -e $(echo $gruvbox_yellow) -e "kedai" -q $BSPWM; then
+	echo "current theme [gruvbox]"; \
+	sed -i --follow-symlinks -e \
+		"s/$gruvbox_grey/$nord_grey/" -e "s/$gruvbox_yellow/$nord_blue/" -e 's/kedai/Nordic/' $BSPWM \
+		&& echo "change bspwm theme [nord]"
+
+elif grep -e $(echo $nord_grey) -e $(echo $nord_blue) -e "Nordic.jpg" -q $BSPWM; then
+	echo "current theme [nord]"; \
+	sed -i --follow-symlinks -e \
+		"s/$nord_grey/$gruvbox_grey/" -e "s/$nord_blue/$gruvbox_yellow/" -e 's/Nordic/kedai/' $BSPWM \
+		&& echo "change bspwm theme [gruvbox]"
+fi #}}}
+
+#change conky theme#{{{
+if grep -e $(echo $gruvbox_fg) -e $(echo $gruvbox_yellow) -e $(echo $gruvbox_grey) -q $CONKY; then
+	sed -i --follow-symlinks -e \
+		"s/$gruvbox_fg/$nord_fg/" -e "s/$gruvbox_yellow/$nord_blue/" -e "s/$gruvbox_grey/$nord_grey/" $CONKY \
+		&& echo "change conky theme [nord]"
+
+elif grep -e $(echo $nord_fg) -e $(echo $nord_blue) -e $(echo $nord_grey) -q $CONKY; then
+	sed -i --follow-symlinks -e \
+		"s/$nord_fg/$gruvbox_fg/" -e "s/$nord_blue/$gruvbox_yellow/" -e "s/$nord_grey/$gruvbox_grey/" $CONKY \
+		&& echo "change conky theme [gruvbox]"
+fi #}}}
+
+#change dunst theme#{{{
+if grep -e $(echo {$gruvbox_bg_alt,$gruvbox_fg,$gruvbox_grey,$gruvbox_yellow}) -q $DUNST 2> /dev/null ; then
+	sed -i --follow-symlinks -e \
+		"s/$gruvbox_bg_alt/$nord_bg_alt/" -e "s/$gruvbox_fg/$nord_fg/" -e "s/$gruvbox_grey/$nord_grey/" -e "s/$gruvbox_yellow/$nord_blue/" $DUNST && echo "change theme [nord]"
+
+elif grep -e $(echo {$nord_bg_alt,$nord_fg,$nord_grey,$nord_blue}) -q $DUNST 2> /dev/null; then
+	sed -i --follow-symlinks -e \
+		"s/$nord_bg_alt/$gruvbox_bg_alt/" -e "s/$nord_fg/$gruvbox_fg/" -e "s/$nord_grey/$gruvbox_grey/" -e "s/$nord_blue/$gruvbox_yellow/" $DUNST && echo "change theme [gruvbox]"
+fi #}}}
+
+#change theme vifm#{{{
+if grep "gruvbox" -q $VIFM; then
+	sed -i --follow-symlinks 's/gruvbox/nord/' $VIFM && echo change theme vifm [nord]
+elif grep "nord" -q $VIFM; then
+	sed -i --follow-symlinks 's/nord/gruvbox/' $VIFM && echo change theme vifm [nord]
+fi #}}}
+
+
+echo "reload bspwm"
+bspc wm -r
+xrdb .Xresources

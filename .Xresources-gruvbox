@@ -1,7 +1,7 @@
 ! {{{ Gruvbox Color 
 ! hard contrast: *background: #1d2021
 *background: #282828
-*background-alt: #32302f
+*background-alt: #3c3836
 *foreground: #ebdbb2
 *foreground-alt:#665c54 
 ! Black + DarkGrey

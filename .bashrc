@@ -12,7 +12,7 @@ export BASH_IT="/home/noval/.bash_it"
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
 # location /.bash_it/themes/
-export BASH_IT_THEME='barbuk'
+export BASH_IT_THEME='sexy'
 
 # Some themes can show whether `sudo` has a current token or not.
 # Set `$THEME_CHECK_SUDO` to `true` to check every prompt:
@@ -96,12 +96,11 @@ source "$BASH_IT"/bash_it.sh
 #env
 export EDITOR='nvim'
 export VISUAL='nvim'
-export PATH="/home/noval/.local/bin:$PATH" 
+export PATH="/home/noval/.local/bin:$PATH"
 
 #aliases
 alias wsh="wiki-search-html"
 alias ws='wiki-search'
-alias history='history | less'
 alias zshconf="nvim $HOME/.zshrc"
 alias awconf="nvim $HOME/.config/awesome/rc.lua"
 alias aw-themeconf="nvim $HOME/.config/awesome/themes/powerarrow-dark/theme.lua"
@@ -115,10 +114,14 @@ alias sxconf="nvim $HOME/.config/sxhkd/sxhkdrc"
 alias polyconf="nvim $HOME/.config/polybar/config.ini"
 alias wws="wormhole-william send"
 alias wwr="wormhole-william receive"
-#alias nvim="bspc node --to-desktop ^3 --follow | nvim"
-#alias ncmpcpp="bspc node --to-desktop ^4 --follow | ncmpcpp"
+alias pomo="bspc node --to-desktop ^6 --follow -t pseudo_tiled | pomo"
+alias nvim="bspc node --to-desktop ^3 --follow | nvim"
+alias ncmpcpp="bspc node --to-desktop ^4 --follow -t pseudo_tiled && ncmpcpp"
+alias nmtui="bspc node --to-desktop ^6 --follow -t pseudo_tiled| nmtui"
 
 alias mkdir="mkdir -p"
 alias neo="neofetch"
 alias cowsayf="cowsay $(fortune)"
 alias pastel="pastel -m 8bit" # }}}
+# jump
+alias skripsi="cd ~/Documents/essay-project/template-skripsi"

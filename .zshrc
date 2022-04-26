@@ -41,3 +41,5 @@ alias mkdir="mkdir -p"
 alias neo="neofetch"
 alias cowsayf="cowsay $(fortune)"
 alias pastel="pastel -m 8bit" # }}}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

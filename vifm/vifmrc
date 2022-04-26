@@ -1,4 +1,3 @@
-
 set vicmd=nvim
 
 set syscalls
@@ -35,7 +34,7 @@ set norunexec
 
 " List of color schemes to try (picks the first one supported by the terminal)
 
-colorscheme nord
+colorscheme gruvbox
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -210,7 +209,7 @@ fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
 " Images
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ {view in feh}
-        \ feh -FZ %d --start-at %d/%c 2>/dev/null,
+        \ feh -GFdZ --draw-tinted %d --start-at %d/%c 2>/dev/null,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}

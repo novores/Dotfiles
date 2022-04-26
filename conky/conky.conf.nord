@@ -2,9 +2,9 @@ conky.config = {
 	alignment = 'top_right',
 	background = true,
 	draw_shades = false,
-	default_color = '#ebdbb2',
-	color2 = '#fabd2f',
-	color3 = '#928374',
+	default_color = '#D8DEE9',
+	color2 = '#8FBCBB',
+	color3 = '#88C0D0',
 	cpu_avg_samples = 2,
 	double_buffer = true,
 	font = 'Montserrat:pixelsize=12',
@@ -44,5 +44,5 @@ ${voffset 15}$font$alignr${execi 10000 awk -F= '/TION/ {print $2}' /etc/lsb-rele
 ${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
 ${voffset 10}${color3}${alignr}${execi 1200 whoami}@${nodename}
 ${alignr}${color3}${font Nexa Light:Regular:size=8}uptime: ${color}${uptime_short}
-${voffset 10}$alignr$(color3)${font Nexa Light:Regular:size=8}kernel: ${color2}${kernel}
+${voffset 100}$alignr$(color3)${font Nexa Light:Regular:size=8}kernel: ${color2}${kernel}
 ]]

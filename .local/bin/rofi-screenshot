@@ -39,8 +39,8 @@ crtc() {
 
 crtf() {
   notify-send "Screenshot" "Select a region to capture"
-  dt=$(date '+%d-%m-%Y %H:%M:%S')
-  ffcast -q $(slop -n -f '-g %g ') png "$screenshot_directory/$dt.png"
+  dt=$(date +%Y%m%d%H%M%S)
+  ffcast -q $(slop -n -f '-g %g ') png "$screenshot_directory/$dt.png" && $HOME/.local/bin/scrot-imgck
   notify-send "Screenshot" "Region saved to $screenshot_directory"
 }
 
