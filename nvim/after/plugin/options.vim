@@ -17,7 +17,7 @@ set scrolloff=10
 set cursorline
 set nowrap
 filetype plugin indent on
-COQnow
+COQnow --shut-up
 
 "" Copy/Paste/Cut{{{
 if has('unnamedplus')

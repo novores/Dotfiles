@@ -4,22 +4,23 @@ configuration {
     icon-theme:                     "Papirus";
     display-drun:                   "";
     drun-display-format:            "{name}";
-    disable-history:                false;
-    fullscreen:                     false;
-    sidebar-mode:                   true;
+    timeout {
+      delay: 10;
+      action: "kb-cancel";
+    }
 }
+
 
 @import "gruvbox.rasi"
 
 window {
     transparency:                   "pseudo";
     background-color:               @bg1;
-    text-color:                     @fg;
     border:                         0px;
     border-color:                   @ac;
     border-radius:                  0px;
-    width:                          400px;
-    height:                          450px;
+    width:                          450px;
+    height:                         300px;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
@@ -27,98 +28,79 @@ window {
 
 prompt {
     enabled:                        true;
-    padding:                        10px 15px 10px 15px;
-    background-color:               @yellow-dark;
+    border:                         0px;
+    padding:                        10px 20px 10px 20px;
+    background-color:               @green;
     text-color:                     @bg;
     font:                           "FiraMono Nerd Font 10";
 }
 
 entry {
-    background-color:               @yellow-dark;
-    text-color:                     @bg;
-    placeholder-color:              @bg1;
-    expand:                         true;
-    horizontal-align:               0;
-    placeholder:                    "Search...";
-    padding:                        12px 10px 10px 10px;
-    margin:                         0px 150px 0px 0px;
-    border-radius:                  0px 50px 50px 0px;
+    background-color:               @bg;
+    text-color:                     @fg;
+    border:                         0px;
+    placeholder-color:              @bg5;
+    placeholder:                    "search";
+    padding:                        10px 10px 10px 10px;
     blink:                          true;
 }
 
 inputbar {
     children:                       [ prompt, entry ];
-    background-color:               @yellow;
-    text-color:                     #ebdbb2;
-    expand:                         false;
+    margin:                         0px 0px 10px 0px;
     border:                         0px;
-    border-radius:                  0px;
-    border-color:                   @ac;
-    spacing:                        0px;
+    background-color:               @bg;
+    text-color:                     @fg;
 }
 
 listview {
     background-color:               @bg;
+    border:                         0px;
     padding:                        10px 10px 10px 10px;
     columns:                        1;
     lines:                          7;
-    spacing:                        5px;
-    cycle:                          true;
-    dynamic:                        true;
     layout:                         vertical;
     scrollbar:                      false;
 }
 
 mainbox {
-    background-color:               @bg4;
+    children:                       [inputbar,listview];
     border:                         0px;
-    border-radius:                  0px;
-    border-color:                   @bg4;
-    children:                       [ inputbar, listview ];
-    spacing:                        0px;
-    padding:                        0px;
+    padding: 3px 3px 3px 3px;
 }
 
 element {
-    background-color:               @bg;
     text-color:                     @fg;
-    orientation:                    horizontal;
-    border-radius:                  0px;
+    border:                         0px;
+    background-color:               @bg;
     padding:                        6px;
 }
 
 element-icon {
-    size:                           24px;
+    size:                           20px;
     border:                         0px;
 }
 
 element-text {
-    expand:                         true;
-    horizontal-align:               0;
     vertical-align:                 0.5;
     margin:                         0px 2.5px 0px 2.5px;
 }
 
 element.selected.normal{
-    background-color:               @yellow;
+    background-color:               @green;
     text-color:                     @bg;
-    border:                         0px;
-    border-radius:                  0px;
-    border-color:                   @bg;
 }
 
 element.normal.normal{
     background-color:               @bg;
     text-color:                     @fg;
-    border:                         0px;
-    border-radius:                  0px;
-    border-color:                   @bg;
 }
 
 element.alternate.normal{
     background-color:               @bg;
     text-color:                     @fg;
-    border:                         0px;
-    border-radius:                  0px;
-    border-color:                   @bg;
 }
+
+/* vim:ft=css
+
+

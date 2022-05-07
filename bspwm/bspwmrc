@@ -3,54 +3,55 @@
 #  ┣┻┓┗━┓┣━┛┃╻┃┃┃┃
 #  ┗━┛┗━┛╹  ┗┻┛╹ ╹
 
-#bspc monitor -d 1 2 3 4 5 6 7
 bspc monitor -d     ﳁ 
-#bspc monitor -d TERM WEB CODE MUSIC OFFICE MISC CHAT
 
 # {{{bspc config
 bspc config border_width                3
-bspc config focused_border_color        "#fabd2f"
+bspc config focused_border_color        "#b8bb26"
 bspc config normal_border_color         "#928374" 
-bspc config window_gap                  8
+bspc config window_gap                  6
 bspc config focus_follows_pointer       false
 
 bspc config split_ratio                 0.5
 bspc config gapless_monocle             true
 bspc config borderless_monocle          true #}}}
 
-# {{{Autostart application
-
-#trigger sxhkd
+#trigger sxhkd#{{{
 pgrep -x sxhkd > /dev/null || sxhkd &
+#}}}
 
-#setting wallpaper
-feh --bg-scale ~/Images/Wallpapers/kedai.jpg &
+#setting wallpaper#{{{
+feh --bg-scale --no-fehbg ~/Images/Wallpapers/binary-code-minimalism-eg-5120x2880.jpg &
+#}}}
 
-#load config .Xresources
+#load config .Xresources#{{{
 xrdb .Xresources &
+#}}}
 
-#dunst
-killall dunst;dunstify -t 10000 "Fortune" "$(fortune)"
-
-#polybar
+#polybar#{{{
 killall polybar
 #while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 polybar main -c ~/.config/polybar/config.ini &
+#}}}
 
-#set default cursor
+#set default cursor#{{{
 xsetroot -cursor_name left_ptr &
+#}}}
 
-#Autostart
+#Autostart#{{{
 /usr/bin/lxpolkit & #polkit
-picom --config ~/.config/picom/picom.conf & #picom
+# picom --config ~/.config/picom/picom.conf & #picom
 killall unclutter;unclutter -root & #autohide cursor
 killall conky;/home/noval/.local/bin/start_conky & #conky
+#}}}
 
-#trigger lock program
+#trigger lock program#{{{
 killall xautolock;xautolock \
-  -time 5 -locker "betterlockscreen -l dim" -killtime 10 \
+  -time 7 -locker "betterlockscreen -l dim" -killtime 30 \
   -killer "loginctl suspend" -notify 30 \
-  -notifier "notify-send 'NOTICE' 'sebentar lagi dikunci'"
+  -notifier "notify-send 'NOTICE' 'sebentar lagi dikunci'" \
+  -detectsleep 
+#}}}
 
 # {{{bspc rule
 bspc rule -a zathura:feh rectangle=800x600+0+0 center=true

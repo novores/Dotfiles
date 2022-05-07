@@ -92,10 +92,10 @@ rvstf() {
 }
 
 get_options() {
-  echo "  Capture Region  Clip"
-  echo "  Capture Region  File"
-  echo "  Capture Screen  Clip"
-  echo "  Capture Screen  File"
+  echo "  Capture Region  Clip"
+  echo "  Capture Region  File"
+  echo "  Capture Screen  Clip"
+  echo "  Capture Screen  File"
   echo "  Record Region  File (GIF)"
   echo "  Record Screen  File (GIF)"
   echo "  Record Region  File (MP4)"
@@ -137,7 +137,7 @@ main() {
   fi
 
   # Get choice from rofi
-  choice=$( (get_options) | rofi -dmenu -i -fuzzy -p "Screenshot" )
+  choice=$( (get_options) | rofi -dmenu -i -fuzzy -p "" )
 
   # If user has not picked anything, exit
   if [[ -z "${choice// }" ]]; then
@@ -146,16 +146,16 @@ main() {
 
   # run the selected command
   case $choice in
-    '  Capture Region  Clip')
+    '  Capture Region  Clip')
       crtc
       ;;
-    '  Capture Region  File')
+    '  Capture Region  File')
       crtf
       ;;
-    '  Capture Screen  Clip')
+    '  Capture Screen  Clip')
       cstc
       ;;
-    '  Capture Screen  File')
+    '  Capture Screen  File')
       cstf
       ;;
     '  Record Region  File (GIF)')

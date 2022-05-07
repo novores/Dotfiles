@@ -7,6 +7,7 @@ CONKY=$DOT/conky/conky.conf
 ROFI=$DOT/rofi/config.rasi
 DUNST=$DOT/dunst/dunstrc 
 VIFM=$DOT/vifm/vifmrc
+GTK=$HOME/.gtkrc-2.0
 #}}}
 
 #COLOR variable
@@ -15,7 +16,7 @@ nord_blue="#88C0D0"
 nord_fg="#D8DEE9"
 nord_bg_alt="#3B4252"
 gruvbox_grey="#928374"
-gruvbox_yellow="#fabd2f"
+gruvbox_yellow="#d79921"
 gruvbox_fg="#ebdbb2"
 gruvbox_bg_alt="#3c3836"
 
@@ -31,6 +32,17 @@ elif grep "\-gruvbox" -q $XRESOURCES; then
 	sed -i --follow-symlinks \
 		's/-gruvbox/-nord/g' $XRESOURCES && echo "change terminal theme [nord]"
 fi #}}}
+
+##change gtk theme (make sure your desktop support for change gtk theme in runtime)#{{{
+#if grep "Nordic" -q $GTK; then
+#	sed -i --follow-symlinks -e \
+#		's/Nordic/Gruvbox-Material-Dark/g' -e 's/Nordy-cursor/Adwaita/' -e 's/Nordzy/gruvbox-material-icon/g' $GTK \
+#		&& echo "change gtk, icon, cursor theme [gruvbox]"
+#elif grep "Gruvbox-Material-Dark" -q $GTK; then
+#	sed -i --follow-symlinks -e \
+#		's/Gruvbox-Material-Dark/Nordic/g' -e 's/Adwaita/Nordzy-cursor/' -e 's/gruvbox-material-icon/Nordzy/g' $GTK \
+#		&& echo "change gtk, icon, cursor theme [nord]"
+#fi#}}}
 
 #change rofi theme#{{{
 if grep "gruvbox" -q $ROFI; then
@@ -84,7 +96,6 @@ if grep "gruvbox" -q $VIFM; then
 elif grep "nord" -q $VIFM; then
 	sed -i --follow-symlinks 's/nord/gruvbox/' $VIFM && echo change theme vifm [nord]
 fi #}}}
-
 
 echo "reload bspwm"
 bspc wm -r

@@ -12,7 +12,7 @@ super + Return
 super + d
     rofi -show drun	
 super + F8
-    rofi-wifi-menu
+    $HOME/Git/rofi-wifi-menu/rofi-wifi-menu.sh
 super + F9
     rofi -modi p:$HOME/.local/bin/rofi-power-menu -show p
 
@@ -64,7 +64,7 @@ XF86AudioMute
 
 #{{{LockScreen
 alt + ctrl + l
-    xautolock -locknow -locker "betterlockscreen -l dim" -killtime 10 -killer "loginctl suspend"
+    xautolock -locknow -locker "betterlockscreen -l dim" -killtime 10 -killer "loginctl suspend" -detectsleep
     #}}}
 
 #{{{Light
@@ -79,7 +79,7 @@ XF86MonBrightnessDown
 
 # quit/restart bspwm
 super + shift + r
-	bspc wm -r && notify-send -t 2000 "restart bspwm"
+	bspc wm -r &&dunstify -t 10000 "Reload BSPWM" "$(fortune)" 
 
 super + ctrl + q
     bspc quit

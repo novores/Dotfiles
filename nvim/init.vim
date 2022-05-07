@@ -40,6 +40,5 @@ let g:translate_popup_window = 0
 
 nnoremap <F5> "=strftime("%FT%T%z")<CR>P
 inoremap <F5> <C-R>=strftime("%FT%T%z")<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

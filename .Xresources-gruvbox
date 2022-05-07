@@ -1,4 +1,4 @@
-! {{{ Gruvbox Color 
+!  Gruvbox Color 
 ! hard contrast: *background: #1d2021
 *background: #282828
 *background-alt: #3c3836
@@ -28,4 +28,4 @@
 ! LightGrey + White
 *color7:  #a89984
 *color15: #ebdbb2
-!}}}
+!
