@@ -53,13 +53,13 @@ alt + shift + m
     
 #{{{Audio
 XF86AudioRaiseVolume
-    amixer -q set Master 1%+ && dunstify -t 300 "Volume" "increase"
+    pamixer -i 1 && dunstify -t 300 "Volume" "increase"
 
 XF86AudioLowerVolume
-    amixer -q set Master 1%- && notify-send -t 300  "Volume" "decrease"
+    pamixer -d 1  && notify-send -t 300  "Volume" "decrease"
 
 XF86AudioMute
-    amixer -q set Master toggle && notify-send -t 300  "mute"
+    pamixer -t && notify-send -t 300  "mute"
     #}}}
 
 #{{{LockScreen
@@ -79,7 +79,7 @@ XF86MonBrightnessDown
 
 # quit/restart bspwm
 super + shift + r
-	bspc wm -r &&dunstify -t 10000 "Reload BSPWM" "$(fortune)" 
+	bspc wm -r && dunstify -t 10000 "Reload BSPWM" "$(fortune)" 
 
 super + ctrl + q
     bspc quit

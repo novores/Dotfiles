@@ -21,7 +21,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #}}}
 
 #setting wallpaper#{{{
-feh --bg-scale --no-fehbg ~/Images/Wallpapers/binary-code-minimalism-eg-5120x2880.jpg &
+feh --bg-scale --no-fehbg ~/Unduhan/binary-code-minimalism-eg-1366x768.jpg &
 #}}}
 
 #load config .Xresources#{{{
@@ -29,7 +29,7 @@ xrdb .Xresources &
 #}}}
 
 #polybar#{{{
-killall polybar
+pkill polybar
 #while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 polybar main -c ~/.config/polybar/config.ini &
 #}}}
@@ -39,10 +39,10 @@ xsetroot -cursor_name left_ptr &
 #}}}
 
 #Autostart#{{{
-/usr/bin/lxpolkit & #polkit
+/usr/libexec/polkit-mate-authentication-agent-1 & #polkit
 # picom --config ~/.config/picom/picom.conf & #picom
 killall unclutter;unclutter -root & #autohide cursor
-killall conky;/home/noval/.local/bin/start_conky & #conky
+killall conky;/home/on/.local/bin/start_conky & #conky
 #}}}
 
 #trigger lock program#{{{
@@ -50,7 +50,6 @@ killall xautolock;xautolock \
   -time 7 -locker "betterlockscreen -l dim" -killtime 30 \
   -killer "loginctl suspend" -notify 30 \
   -notifier "notify-send 'NOTICE' 'sebentar lagi dikunci'" \
-  -detectsleep 
 #}}}
 
 # {{{bspc rule

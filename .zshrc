@@ -1,7 +1,7 @@
 export VISUAL=nvim;
 export EDITOR=nvim;
 
-source /usr/share/zsh/share/antigen.zsh
+source /home/novores/Gitrepos/antigen.zsh
 
 # Load the oh-my-zsh's library.{{{
 antigen use oh-my-zsh
