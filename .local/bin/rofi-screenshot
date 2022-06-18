@@ -31,7 +31,7 @@ countdown() {
 
 crtc() {
   notify-send "Screenshot" "Select a region to capture"
-  ffcast -q $(slop -n -f '-g %g ') png /tmp/screenshot_clip.png
+  ffscreencast -q $(slop -n -f '-g %g ') png /tmp/screenshot_clip.png
   xclip -selection clipboard -t image/png /tmp/screenshot_clip.png
   rm /tmp/screenshot_clip.png
   notify-send "Screenshot" "Region copied to Clipboard"
@@ -40,12 +40,12 @@ crtc() {
 crtf() {
   notify-send "Screenshot" "Select a region to capture"
   dt=$(date +%Y%m%d%H%M%S)
-  ffcast -q $(slop -n -f '-g %g ') png "$screenshot_directory/$dt.png" && $HOME/.local/bin/scrot-imgck
+  ffscreencast -q $(slop -n -f '-g %g ') png "$screenshot_directory/$dt.png" && $HOME/.local/bin/scrot-imgck
   notify-send "Screenshot" "Region saved to $screenshot_directory"
 }
 
 cstc() {
-  ffcast -q png /tmp/screenshot_clip.png
+  ffscreencast -q png /tmp/screenshot_clip.png
   xclip -selection clipboard -t image/png /tmp/screenshot_clip.png
   rm /tmp/screenshot_clip.png
   notify-send "Screenshot" "Screenshot copied to Clipboard"
@@ -53,14 +53,14 @@ cstc() {
 
 cstf() {
   dt=$(date '+%d-%m-%Y %H:%M:%S')
-  ffcast -q png "$screenshot_directory/$dt.png"
+  ffscreencast -q png "$screenshot_directory/$dt.png"
   notify-send "Screenshot" "Screenshot saved to $screenshot_directory"
 }
 
 rgrtf() {
   notify-send "Screenshot" "Select a region to record"
   dt=$(date '+%d-%m-%Y %H:%M:%S')
-  ffcast -q $(slop -n -f '-g %g ' && countdown) rec /tmp/screenshot_gif.mp4
+  ffscreencast -q $(slop -n -f '-g %g ' && countdown) rec /tmp/screenshot_gif.mp4
   notify-send "Screenshot" "Converting to gif... (this can take a while)"
   video_to_gif /tmp/screenshot_gif.mp4 "$screenshot_directory/$dt.gif"
   rm /tmp/screenshot_gif.mp4
@@ -70,7 +70,7 @@ rgrtf() {
 rgstf() {
   countdown
   dt=$(date '+%d-%m-%Y %H:%M:%S')
-  ffcast -q rec /tmp/screenshot_gif.mp4
+  ffscreencast -q rec /tmp/screenshot_gif.mp4
   notify-send "Screenshot" "Converting to gif... (this can take a while)"
   video_to_gif /tmp/screenshot_gif.mp4 "$screenshot_directory/$dt.gif"
   rm /tmp/screenshot_gif.mp4
@@ -80,14 +80,14 @@ rgstf() {
 rvrtf() {
   notify-send "Screenshot" "Select a region to record"
   dt=$(date '+%d-%m-%Y %H:%M:%S')
-  ffcast -q $(slop -n -f '-g %g ' && countdown) rec "$screenshot_directory/$dt.mp4"
+  ffscreencast -q $(slop -n -f '-g %g ' && countdown) rec "$screenshot_directory/$dt.mp4"
   notify-send "Screenshot" "Recording saved to $screenshot_directory"
 }
 
 rvstf() {
   countdown
   dt=$(date '+%d-%m-%Y %H:%M:%S')
-  ffcast -q rec "$screenshot_directory/$dt.mp4"
+  ffscreencast -q rec "$screenshot_directory/$dt.mp4"
   notify-send "Screenshot" "Recording saved to $screenshot_directory"
 }
 
@@ -112,7 +112,7 @@ check_deps() {
 main() {
   # check dependencies
   check_deps slop
-  check_deps ffcast
+  check_deps ffscreencast
   check_deps ffmpeg
   check_deps xclip
   check_deps rofi

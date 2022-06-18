@@ -12,7 +12,7 @@ super + Return
 super + d
     rofi -show drun	
 super + F8
-    $HOME/Git/rofi-wifi-menu/rofi-wifi-menu.sh
+    $HOME/Gitrepos/rofi-network-manager/rofi-network-manager.sh
 super + F9
     rofi -modi p:$HOME/.local/bin/rofi-power-menu -show p
 
