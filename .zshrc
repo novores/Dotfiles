@@ -45,6 +45,7 @@ alias mkdir="mkdir -p"
 alias neo="neofetch"
 alias cowsayf="cowsay $(fortune)"
 alias pastel="pastel -m 8bit" 
+alias terjem="trans :id"
 
 #xbps
 alias xi="sudo xbps-install"

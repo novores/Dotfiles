@@ -21,7 +21,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #}}}
 
 #setting wallpaper#{{{
-feh --bg-scale --no-fehbg ~/Unduhan/binary-code-minimalism-eg-1366x768.jpg &
+feh --bg-scale --no-fehbg ~/Gambar/wallpapers/5.png &
 #}}}
 
 #load config .Xresources#{{{
@@ -29,24 +29,18 @@ xrdb .Xresources &
 #}}}
 
 #polybar#{{{
-pkill polybar
-#while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-polybar main -c ~/.config/polybar/config.ini &
-#}}}
-
-#set default cursor#{{{
-xsetroot -cursor_name left_ptr &
+pkill polybar;polybar -r &
 #}}}
 
 #Autostart#{{{
 /usr/libexec/polkit-mate-authentication-agent-1 & #polkit
 # picom --config ~/.config/picom/picom.conf & #picom
-killall unclutter;unclutter -root & #autohide cursor
-killall conky;/home/on/.local/bin/start_conky & #conky
+pkill unclutter;unclutter -root & #autohide cursor
+# pkill conky;$HOME/.local/bin/start_conky & #conky
 #}}}
 
 #trigger lock program#{{{
-killall xautolock;xautolock \
+pkill xautolock;xautolock \
   -time 7 -locker "betterlockscreen -l dim" -killtime 30 \
   -killer "loginctl suspend" -notify 30 \
   -notifier "notify-send 'NOTICE' 'sebentar lagi dikunci'" \
@@ -63,5 +57,3 @@ bspc rule -a firefox desktop=^2 follow=on
 bspc rule -a TelegramDesktop desktop=^5 follow=on
 bspc rule -a Soffice desktop=^5 follow=on
 bspc rule -a Inkscape desktop=^5 follow=on #}}}
-
-wmname LG3D
