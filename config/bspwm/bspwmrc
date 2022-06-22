@@ -5,6 +5,8 @@
 
 bspc monitor -d     ﳁ 
 
+xsetroot -cursor_name left_ptr
+
 # {{{bspc config
 bspc config border_width                3
 bspc config focused_border_color        "#b8bb26"
@@ -21,7 +23,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #}}}
 
 #setting wallpaper#{{{
-feh --bg-scale --no-fehbg ~/Gambar/wallpapers/5.png &
+feh --bg-scale --no-fehbg ~/Pictures/wallpapers/1.png &
 #}}}
 
 #load config .Xresources#{{{
