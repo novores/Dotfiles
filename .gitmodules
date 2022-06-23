@@ -7,3 +7,6 @@
 [submodule "submodules/polybar-wifi-ramp-icons"]
 	path = submodules/polybar-wifi-ramp-icons
 	url = https://github.com/isaif/polybar-wifi-ramp-icons.git
+[submodule "submodules/qute-keepassxc"]
+	path = submodules/qute-keepassxc
+	url = https://github.com/ususdei/qute-keepassxc

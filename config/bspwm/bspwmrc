@@ -23,7 +23,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #}}}
 
 #setting wallpaper#{{{
-feh --bg-scale --no-fehbg ~/Pictures/wallpapers/1.png &
+feh --bg-scale --no-fehbg ~/Pictures/wallpapers/3.png &
 #}}}
 
 #load config .Xresources#{{{
