@@ -23,7 +23,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #}}}
 
 #setting wallpaper#{{{
-feh --bg-scale --no-fehbg ~/Pictures/wallpapers/3.png &
+feh --bg-scale --no-fehbg ~/Gambar/wallpapers/animation_gruvbox.jpg &
 #}}}
 
 #load config .Xresources#{{{
@@ -38,7 +38,7 @@ pkill polybar;polybar -r &
 /usr/libexec/polkit-mate-authentication-agent-1 & #polkit
 # picom --config ~/.config/picom/picom.conf & #picom
 pkill unclutter;unclutter -root & #autohide cursor
-# pkill conky;$HOME/.local/bin/start_conky & #conky
+pkill conky;$HOME/.local/bin/start_conky & #conky
 #}}}
 
 #trigger lock program#{{{

@@ -96,7 +96,7 @@ source "$BASH_IT"/bash_it.sh
 #env
 export EDITOR='nvim'
 export VISUAL='nvim'
-export PATH="/home/noval/.local/bin:$PATH"
+export PATH="/home/novores/.local/bin:$PATH"
 
 #aliases
 alias wsh="wiki-search-html"
@@ -114,14 +114,20 @@ alias sxconf="nvim $HOME/.config/sxhkd/sxhkdrc"
 alias polyconf="nvim $HOME/.config/polybar/config.ini"
 alias wws="wormhole-william send"
 alias wwr="wormhole-william receive"
-alias pomo="bspc node --to-desktop ^6 --follow -t pseudo_tiled | pomo"
-alias nvim="bspc node --to-desktop ^3 --follow | nvim"
-alias ncmpcpp="bspc node --to-desktop ^4 --follow -t pseudo_tiled && ncmpcpp"
-alias nmtui="bspc node --to-desktop ^6 --follow -t pseudo_tiled| nmtui"
+# alias pomo="bspc node --to-desktop ^6 --follow -t pseudo_tiled | pomo"
+# alias nvim="bspc node --to-desktop ^3 --follow | nvim"
+# alias ncmpcpp="bspc node --to-desktop ^4 --follow -t pseudo_tiled && ncmpcpp"
+# alias nmtui="bspc node --to-desktop ^6 --follow -t pseudo_tiled| nmtui"
 
 alias mkdir="mkdir -p"
 alias neo="neofetch"
 alias cowsayf="cowsay $(fortune)"
 alias pastel="pastel -m 8bit" # }}}
+alias terjem="trans :id"
 # jump
 alias skripsi="cd ~/Documents/essay-project/template-skripsi"
+#xbps
+alias xi="sudo xbps-install"
+alias xr="sudo xbps-remove"
+alias xc="sudo xbps-reconfigure"
+alias xq="sudo xbps-query"

@@ -2,18 +2,18 @@
 #include "/home/novores/.Xresources-gruvbox"
 
 ! {{{xft settings
-Xft.dpi:       96
-Xft.antialias: true
-Xft.hinting:   true
-Xft.rgba:      rgb
-Xft.autohint:  true
-Xft.hintstyle: hintslight
-Xft.lcdfilter: lcddefault
+! Xft.dpi:       96
+!  Xft.antialias: true
+! Xft.hinting:   true
+! Xft.rgba:      rgb
+! Xft.autohint:  true
+! Xft.hintstyle: hintslight
+! Xft.lcdfilter: lcddefault
 !}}}
 
 ! {{{Urxvt settings
-!*.font:                     Hack Nerd Font Mono:style=Regular:size=10.5
-URxvt.font:                 xft:Hack Nerd Font Mono:style=Regular:size=10.5
+*.font:                     JetBrainsMono Nerd Font:style=Regular:size=10
+! URxvt.font:                 xft:Hack Nerd Font Mono:style=Regular:size=10.5
 !URxvt.letterSpace:          -1
 URxvt.depth:                32
 URxvt*scrollBar:            false 

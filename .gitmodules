@@ -10,3 +10,6 @@
 [submodule "submodules/qute-keepassxc"]
 	path = submodules/qute-keepassxc
 	url = https://github.com/ususdei/qute-keepassxc
+[submodule "submodules/st"]
+	path = submodules/st
+	url = https://github.com/siduck/st.git

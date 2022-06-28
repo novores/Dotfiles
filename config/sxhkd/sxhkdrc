@@ -7,7 +7,8 @@
 
 # terminal emulator
 super + Return
-   $HOME/.local/bin/urxvtdc
+    xst
+   # $HOME/.local/bin/urxvtdc 
 #rofi menus
 super + d
     rofi -show drun	
@@ -69,10 +70,10 @@ alt + ctrl + l
 
 #{{{Light
 XF86MonBrightnessUp
-    light -A 1 && dunstify -t 1000 "Brightness" "increase"
+    xbacklight -inc 1 && dunstify -t 1000 "Brightness" "increase"
 
 XF86MonBrightnessDown
-    light -U 1 && dunstify -t 1000 "Brightness" "decrease"
+    xbacklight -dec 1 && dunstify -t 1000 "Brightness" "decrease"
 #}}}
 
 # {{{bspwm hotkeys

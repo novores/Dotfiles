@@ -24,7 +24,7 @@ antigen bundle reobin/typewritten@main
 antigen reset; antigen apply # }}}
 
 # Add bin directory user to PATH
-export PATH=$HOME/.local/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.local/bin:$PATH
 
 #ALIASES 
 alias zshconf="nvim $HOME/.zshrc"
@@ -44,7 +44,7 @@ alias wr="wormhole receive"
 alias mkdir="mkdir -p"
 alias neo="neofetch"
 alias cowsayf="cowsay $(fortune)"
-alias pastel="pastel -m 8bit" 
+# alias pastel="pastel -m 8bit" 
 alias terjem="trans :id"
 
 #xbps
