@@ -36,7 +36,14 @@ def_key "n"
 def_key "N"
   previous_found_item
 
-### elena ###
+def_key "l"
+  next_column
+
+def_key "h"
+  previous_column
+
+def_key "t"
+  show_lyrics
 
 ##### General rules #####
 ##

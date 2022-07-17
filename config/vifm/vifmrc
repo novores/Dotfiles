@@ -109,6 +109,7 @@ command! diff nvim -d %f %F
 command! zip zip -r %c.zip %f
 command! gzip gzip -v %f
 command! gunzip gunzip -v %f
+command! unzip unzip %f
 command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
@@ -535,3 +536,5 @@ set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.m
 set classify+='辶 ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
 " office files
 set classify+=' ::*.doc,,*.docx,,*.odt::, ::*.xls,,*.xls[mx]::, ::*.pptx,,*.ppt::'
+
+"set ft=vim:

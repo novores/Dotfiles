@@ -8,6 +8,13 @@ config_version: 2
 settings:
   colors.webpage.darkmode.enabled:
     global: true
+  content.notifications.enabled:
+    https://a.thetchaixoo.com: false
+    https://d.thetchaixoo.com: false
+    https://ponselharian.com: false
+    https://thetchaixoo.com: false
+    https://v.thetchaixoo.com: false
+    https://y.thetchaixoo.com: false
   editor.command:
     global:
     - nvim
