@@ -11,10 +11,13 @@ settings:
   content.notifications.enabled:
     https://a.thetchaixoo.com: false
     https://d.thetchaixoo.com: false
+    https://mail.tutanota.com: false
     https://ponselharian.com: false
     https://thetchaixoo.com: false
     https://v.thetchaixoo.com: false
     https://y.thetchaixoo.com: false
+  content.register_protocol_handler:
+    https://mail.tutanota.com#url=%25s: false
   editor.command:
     global:
     - nvim

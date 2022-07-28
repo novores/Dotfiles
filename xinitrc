@@ -4,4 +4,5 @@
 #   eval 'dbus-launch --sh-syntax --exit-with-session'
 # fi
 
+# exec bspwm
 exec dbus-run-session ~/.local/bin/startdwm

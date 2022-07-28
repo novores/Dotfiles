@@ -1,3 +1,5 @@
+" vim: filetype=vim
+
 set vicmd=nvim
 
 set syscalls
@@ -524,6 +526,8 @@ nnoremap K 5k
 
 " file types
 set classify=' :dir:/, :exe:, :reg:, :link:'
+" Dir
+set classify+='מּ ::Mega/,,Nextcloud/::, ::Unduhan/::, ::Developments/::'
 " various file names
 set classify+='蘿 ::*.m3u::, ::*.tex::, ::*.gpg::, ::*.json::, ::*.php::, ::*.sass::, ::*.css,,*.scss::, ::*.md::, ::*.vim::, ::*.py::, ::*.js::, ::*.conf,,*rc::, ::../::, ::*.lua::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
 " archives
@@ -537,4 +541,3 @@ set classify+='辶 ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mk
 " office files
 set classify+=' ::*.doc,,*.docx,,*.odt::, ::*.xls,,*.xls[mx]::, ::*.pptx,,*.ppt::'
 
-"set ft=vim:

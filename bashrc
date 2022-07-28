@@ -1,9 +1,16 @@
 # Run twolfson/sexy-bash-prompt
-. ~/.bash_prompt
+
+#Edit sexy-bash-prompt color
+PROMPT_USER_COLOR="$(tput bold)$(tput setaf 154)"
+source ~/.bash_prompt
+
 
 export EDITOR='nvim'
 export VISUAL='nvim'
 export PATH="/home/novores/.local/bin:$PATH"
+export SCREEN="/home/novores/Gambar"
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_PLUG='p:preview-tabbed;n:nuke;'
 
 #set color-manpage
 # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
@@ -49,11 +56,14 @@ find_largest_files() {
 # my_prompt
 
 #aliases#{{{
+alias n="nnn -e"
 alias ls="ls --color=auto"
+alias rm="rm -ivv"
 alias wsh="wiki-search-html"
 alias ws='wiki-search'
 alias wws="wormhole-william send"
 alias wwr="wormhole-william receive"
+alias kpcli="keepassxc-cli open $HOME/Mega/Sandi.kdbx"
 # alias pomo="bspc node --to-desktop ^6 --follow -t pseudo_tiled | pomo"
 # alias nvim="bspc node --to-desktop ^3 --follow | nvim"
 # alias ncmpcpp="bspc node --to-desktop ^4 --follow -t pseudo_tiled && ncmpcpp"
@@ -74,6 +84,8 @@ alias ga="git add"
 alias gr="git rm"
 alias gp="git push"
 alias gc="git commit"
+alias gd="git diff"
+alias gl="git log"
 ### Navigation ###
 alias ..='cd ..;pwd'
 alias ...='cd ../..;pwd'
@@ -81,7 +93,8 @@ alias ....='cd ../../..;pwd'
 alias tree='tree --dirsfirst -F'
 alias mkdir='mkdir -p -v'
 alias ll='ls -l'
-alias la='ls -la'#}}}
+alias la='ls -la'
+#}}}
 
 ###-begin-npm-completion-###{{{
 
