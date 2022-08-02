@@ -7,10 +7,12 @@ source ~/.bash_prompt
 
 export EDITOR='nvim'
 export VISUAL='nvim'
+
 export PATH="/home/novores/.local/bin:$PATH"
-export SCREEN="/home/novores/Gambar"
+export LC_COLLATE="C"
+
 export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='p:preview-tabbed;n:nuke;'
+export NNN_PLUG='p:preview-tabbed;n:nuke;m:nmount'
 
 #set color-manpage
 # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
@@ -48,6 +50,38 @@ clr='\[\033[00m\]'      # Reset
 find_largest_files() {
     du -h -x -s -- * | sort -r -h | head -20;
 }
+
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [[ "${NNNLVL:-0}" -ge 1 ]]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+    # see. To cd on quit only on ^G, remove the "export" and make sure not to
+    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    # The backslash allows one to alias n to nnn if desired without making an
+    # infinitely recursive alias
+    nnn -e "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
 #prompt
 # my_prompt() {
 #   PS1="$ylw$(whoami)$clr$wht at$clr $grn\w$clr $(git_branch)\n\$ "
@@ -56,7 +90,8 @@ find_largest_files() {
 # my_prompt
 
 #aliases#{{{
-alias n="nnn -e"
+# alias n="nnn -e"
+alias N='sudo -E nnn -dH'
 alias ls="ls --color=auto"
 alias rm="rm -ivv"
 alias wsh="wiki-search-html"

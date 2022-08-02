@@ -1,0 +1,3 @@
+$include /etc/inputrc
+# set show-mode-in-prompt
+# set editing-mode vi
