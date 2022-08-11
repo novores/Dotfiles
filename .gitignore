@@ -1,21 +1,9 @@
-*.json*
-*.log*
 *.log
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 *log*
-log
-=======
-*log
->>>>>>> Stashed changes
-=======
-*log
->>>>>>> Stashed changes
-cava*
-freedesktop
-lain
 playlists
 database
 state
 lyrics
 *.pid
+*.json
+*.json*
