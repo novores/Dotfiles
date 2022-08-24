@@ -1,4 +1,6 @@
 #!/bin/sh
+
+# exec dwm in loop
 while true; do
   /usr/local/bin/dwm 2> ~/.dwm.log
 done

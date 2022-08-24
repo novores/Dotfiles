@@ -25,11 +25,11 @@ done
 
 if [[ -z $QUTE_TRANS_SOURCE ]]; then
     # Default use automatic language for source
-    QUTE_TRANS_SOURCE="auto"
+    QUTE_TRANS_SOURCE="en"
 fi
 if [[ -z $QUTE_TRANS_TARGET ]]; then
     # Default use English for target
-    QUTE_TRANS_TARGET="en"
+    QUTE_TRANS_TARGET="id"
 fi
 
 if [[ $QUTE_TRANS_URL == "false" ]]; then
@@ -43,5 +43,3 @@ else
     CONT_KEY="u"
     CONTENT=$QUTE_URL
 fi
-
-echo "open -t ${PAGE}sl=$QUTE_TRANS_SOURCE&tl=$QUTE_TRANS_TARGET&$CONT_KEY=$CONTENT" >> "$QUTE_FIFO"

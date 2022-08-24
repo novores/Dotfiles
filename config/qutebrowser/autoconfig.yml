@@ -7,7 +7,13 @@
 config_version: 2
 settings:
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
+  colors.webpage.darkmode.grayscale.all:
+    global: false
+  colors.webpage.preferred_color_scheme:
+    global: dark
+  content.blocking.method:
+    global: both
   content.notifications.enabled:
     https://a.thetchaixoo.com: false
     https://d.thetchaixoo.com: false
@@ -15,9 +21,12 @@ settings:
     https://ponselharian.com: false
     https://thetchaixoo.com: false
     https://v.thetchaixoo.com: false
+    https://www.kompasiana.com: false
     https://y.thetchaixoo.com: false
   content.register_protocol_handler:
     https://mail.tutanota.com#url=%25s: false
+  downloads.prevent_mixed_content:
+    global: false
   editor.command:
     global:
     - nvim
