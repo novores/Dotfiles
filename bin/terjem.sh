@@ -1,30 +1,35 @@
 #!/usr/bin/env bash
 
-# simple script as a translation tool using translate-shell, I use it on dmenu 
-
-# The GPLv3 License (GPLv3)
-
-# Copyright (c) 2022 Novores(novalhidayat@tuta.io)
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# requirement : - bash 
+#               - tranlate-shell
+#               - notification-daemon eg. dunst
+#               - xsel
 
 set -e
-# if no argument translate clip
-if [ -z "$1" ] && [ -z "$2" ]; then  
-  x=$(trans -b "$(xsel -ob)") ; sleep 1;  notify-send "Translate Result" "$x"
-elif [ -z "$2" ]; then
-  x=$(trans -b "$1"); sleep 1; notify-send "Translate Result" "$x"
-elif [ -n "$2" ]; then
-  x=$(trans ":$1" -b "$2"); sleep 1; notify-send "Translate Result" "$x"
+LOG_FILE=$HOME/.terjem.log
+TITLE="Translate Result"
+
+copied() {
+  if [[ $(command -v xsel) ]]; then
+    xsel --output --clipboard
+  else
+    notify-send --urgency=critical "xsel package not found" "please install xsel" 
+  fi
+}
+notify() {
+  notify-send "$TITLE" "$RESULT"
+}
+
+# if no argument, then translate clip. if the clip is in the form of url it will open a browser.
+if [ -z "$*" ]; then  
+  RESULT=$(trans -brief "$(copied)") ; sleep 1; notify 
+  echo "$(copied) > $RESULT" >> "$LOG_FILE"
+  
+elif [ "$1" == "en" ] || [ "$1" == "pl" ]; then
+  RESULT=$(trans ":$1" -brief -join-sentence "${*:2}"); sleep 1; notify
+  echo "[$(date +%s)] ${*:2} > $RESULT" >> "$LOG_FILE"
+  
+elif [ "$1" != "en" ]; then
+  RESULT=$(trans -brief -join-sentence "$*"); sleep 1; notify 
+  echo "[$(date +%s)] $* > $RESULT" >> "$LOG_FILE"
 fi

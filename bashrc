@@ -4,13 +4,15 @@
 PROMPT_USER_COLOR="$(tput bold)$(tput setaf 154)"
 source ~/.bash_prompt
 
-
+# set default text editor
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+# set PATH
 export PATH="/home/novores/.local/bin:$PATH"
 export LC_COLLATE="C"
 
+# set nnn plugin env
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG='p:preview-tabbed;n:nuke;m:nmount'
 
@@ -46,13 +48,24 @@ cyn='\[\033[01;36m\]'   # Cyan
 wht='\[\033[01;37m\]'   # White
 clr='\[\033[00m\]'      # Reset
 
-#functions
+####-functions-####{{{
+casts () {
+  FILE=$HOME/Developments/blog-repo/content
+  asciinema rec $FILE/$1$(date +%s).cast 
+}
+
+comp () {
+  if [ -e config.h ]; then
+    rm config.h
+  fi
+  sudo make install 
+}
+
 find_largest_files() {
     du -h -x -s -- * | sort -r -h | head -20;
 }
 
-n ()
-{
+n () {
     # Block nesting of nnn in subshells
     if [[ "${NNNLVL:-0}" -ge 1 ]]; then
         echo "nnn is already running"
@@ -85,26 +98,21 @@ n ()
 #prompt
 # my_prompt() {
 #   PS1="$ylw$(whoami)$clr$wht at$clr $grn\w$clr $(git_branch)\n\$ "
-# }
+# }}}}
 
-# my_prompt
-
-#aliases#{{{
-# alias n="nnn -e"
+####-aliases-####{{{
+# alias tmux="tmux attach || tmux"
 alias N='sudo -E nnn -dH'
 alias ls="ls --color=auto"
-alias rm="rm -ivv"
 alias wsh="wiki-search-html"
 alias ws='wiki-search'
 alias wws="wormhole-william send"
 alias wwr="wormhole-william receive"
-alias kpcli="keepassxc-cli open $HOME/Mega/Sandi.kdbx"
+alias kpcli="keepassxc-cli open $HOME/Nextcloud/Apps/X/Sandi.kdbx"
 # alias pomo="bspc node --to-desktop ^6 --follow -t pseudo_tiled | pomo"
 # alias nvim="bspc node --to-desktop ^3 --follow | nvim"
 # alias ncmpcpp="bspc node --to-desktop ^4 --follow -t pseudo_tiled && ncmpcpp"
 # alias nmtui="bspc node --to-desktop ^6 --follow -t pseudo_tiled| nmtui"
-
-alias comp="sudo make install"
 alias neo="neofetch"
 alias cowsayf="cowsay $(fortune)"
 alias pastel="pastel -m 8bit" # 
