@@ -6,6 +6,8 @@
 
 config_version: 2
 settings:
+  colors.webpage.darkmode.algorithm:
+    global: lightness-hsl
   colors.webpage.darkmode.enabled:
     global: true
   colors.webpage.darkmode.grayscale.all:
@@ -18,6 +20,7 @@ settings:
     global: both
   content.geolocation:
     https://www.google.com: false
+    https://www.lapor.go.id: false
   content.notifications.enabled:
     https://107.152.46.48: false
     https://a.thetchaixoo.com: false
@@ -36,6 +39,8 @@ settings:
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
     https://mail.tutanota.com#url=%25s: false
+  content.user_stylesheets:
+    global: $HOME/Gitrepos/solarized-everything-css/css/gruvbox/gruvbox-all-sites.css
   downloads.prevent_mixed_content:
     global: false
   editor.command:

@@ -49,6 +49,9 @@ wht='\[\033[01;37m\]'   # White
 clr='\[\033[00m\]'      # Reset
 
 ####-functions-####{{{
+cam(){
+  fswebcam -r 720x720 -F 20 "$HOME/Gambar/camshot/$(date +%s).jpg"
+}
 casts () {
   FILE=$HOME/Developments/blog-repo/content
   asciinema rec $FILE/$1$(date +%s).cast 
