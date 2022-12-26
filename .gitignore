@@ -7,3 +7,4 @@ lyrics
 *.pid
 *.json
 *.json*
+autoconfig.yml

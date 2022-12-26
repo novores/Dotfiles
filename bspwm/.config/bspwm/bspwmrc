@@ -1,0 +1,61 @@
+#! /bin/sh
+#  ┏┓ ┏━┓┏━┓╻ ╻┏┳┓
+#  ┣┻┓┗━┓┣━┛┃╻┃┃┃┃
+#  ┗━┛┗━┛╹  ┗┻┛╹ ╹
+
+bspc monitor -d     ﳁ 
+
+xsetroot -cursor_name left_ptr
+
+# {{{bspc config
+bspc config border_width                3
+bspc config focused_border_color        "#b8bb26"
+bspc config normal_border_color         "#928374" 
+bspc config window_gap                  6
+bspc config focus_follows_pointer       false
+
+bspc config split_ratio                 0.5
+bspc config gapless_monocle             true
+bspc config borderless_monocle          true #}}}
+
+#trigger sxhkd#{{{
+pgrep -x sxhkd > /dev/null || sxhkd &
+#}}}
+
+#setting wallpaper#{{{
+feh --bg-scale --no-fehbg ~/Gambar/wallpapers/animation_gruvbox.jpg &
+#}}}
+
+#load config .Xresources#{{{
+xrdb .Xresources &
+#}}}
+
+#polybar#{{{
+pkill polybar;polybar -r &
+#}}}
+
+#Autostart#{{{
+/usr/libexec/polkit-mate-authentication-agent-1 & #polkit
+# picom --config ~/.config/picom/picom.conf & #picom
+pkill unclutter;unclutter -root & #autohide cursor
+pkill conky;$HOME/.local/bin/start_conky & #conky
+#}}}
+
+#trigger lock program#{{{
+pkill xautolock;xautolock \
+  -time 7 -locker "betterlockscreen -l dim" -killtime 30 \
+  -killer "loginctl suspend" -notify 30 \
+  -notifier "notify-send 'NOTICE' 'sebentar lagi dikunci'" \
+#}}}
+
+# {{{bspc rule
+bspc rule -a zathura:feh rectangle=800x600+0+0 center=true
+
+bspc rule -a KeePassXC desktop=^6 follow=on state=floating focus=on
+bspc rule -a mpv state=fullscreen focus=on
+bspc rule -a Arandr state=floating
+bspc rule -a qutebrowser desktop=^2 follow=on
+bspc rule -a firefox desktop=^2 follow=on
+bspc rule -a TelegramDesktop desktop=^5 follow=on
+bspc rule -a Soffice desktop=^5 follow=on
+bspc rule -a Inkscape desktop=^5 follow=on #}}}

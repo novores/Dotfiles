@@ -1,0 +1,6 @@
+#!/sbin/bash
+
+# for trigger conky, put this script on .xinitrc
+conky -c ~/.config/conky/conky.conf  
+#conky -c ~/.config/conky/Smooth_3.conf
+exit 0

@@ -1,0 +1,106 @@
+configuration {
+    font:                           "JetBrains Mono 10";
+    show-icons:                     true;
+    icon-theme:                     "Papirus";
+    display-drun:                   "";
+    drun-display-format:            "{name}";
+    timeout {
+      delay: 10;
+      action: "kb-cancel";
+    }
+}
+
+
+@import "gruvbox.rasi"
+
+window {
+    transparency:                   "pseudo";
+    background-color:               @bg1;
+    border:                         0px;
+    border-color:                   @ac;
+    border-radius:                  0px;
+    width:                          450px;
+    height:                         300px;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+prompt {
+    enabled:                        true;
+    border:                         0px;
+    padding:                        10px 20px 10px 20px;
+    background-color:               @green;
+    text-color:                     @bg;
+    font:                           "FiraMono Nerd Font 10";
+}
+
+entry {
+    background-color:               @bg;
+    text-color:                     @fg;
+    border:                         0px;
+    placeholder-color:              @bg5;
+    placeholder:                    "search";
+    padding:                        10px 10px 10px 10px;
+    blink:                          true;
+}
+
+inputbar {
+    children:                       [ prompt, entry ];
+    margin:                         0px 0px 10px 0px;
+    border:                         0px;
+    background-color:               @bg;
+    text-color:                     @fg;
+}
+
+listview {
+    background-color:               @bg;
+    border:                         0px;
+    padding:                        10px 10px 10px 10px;
+    columns:                        1;
+    lines:                          7;
+    layout:                         vertical;
+    scrollbar:                      false;
+}
+
+mainbox {
+    children:                       [inputbar,listview];
+    border:                         0px;
+    padding: 3px 3px 3px 3px;
+}
+
+element {
+    text-color:                     @fg;
+    border:                         0px;
+    background-color:               @bg;
+    padding:                        6px;
+}
+
+element-icon {
+    size:                           20px;
+    border:                         0px;
+}
+
+element-text {
+    vertical-align:                 0.5;
+    margin:                         0px 2.5px 0px 2.5px;
+}
+
+element.selected.normal{
+    background-color:               @green;
+    text-color:                     @bg;
+}
+
+element.normal.normal{
+    background-color:               @bg;
+    text-color:                     @fg;
+}
+
+element.alternate.normal{
+    background-color:               @bg;
+    text-color:                     @fg;
+}
+
+/* vim:ft=css
+
+

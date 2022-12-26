@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+notiduration="10000"
+clipduration="10000"
+TITLE="translated"
+dmenu="dmenu -s -nb #1d2021 -nf #ebdbb2 -sb #e78a4e -sf #282828"
+text=$(printf 'paste' | $dmenu -p "insert text")
+
+notify() {
+  notify-send -t $notiduration "$TITLE" "$RESULT"
+}
+
+while : ; do
+  asklang=$(printf "en\nid" | $dmenu -p "choose language")
+  [ -z "$asklang" ] && exit
+  if [[ $text == "paste" ]]; then 
+    text=$(xsel -ob)
+    [ -z "$text" ] && exit;
+  fi
+    case $asklang in
+      "id" ) RESULT=$(trans :id -b -join-sentence "$text"); notify; exit 
+        ;;
+      "en" ) RESULT=$(trans :en -b -join-sentence "$text"); notify; exit 
+        ;;
+      * ) trans :id -b -join-sentence "$text"; exit
+        ;;
+    esac;
+done
+    
+  
