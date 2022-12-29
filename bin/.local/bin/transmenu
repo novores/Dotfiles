@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 notiduration="10000"
 clipduration="10000"
 TITLE="translated"
@@ -9,6 +8,9 @@ text=$(printf 'paste' | $dmenu -p "insert text")
 
 notify() {
   notify-send -t $notiduration "$TITLE" "$RESULT"
+}
+mkVocab() {
+  printf "[$lang] $text\t=\t$RESULT\n" >> .vocabulary 
 }
 
 while : ; do
@@ -19,9 +21,11 @@ while : ; do
     [ -z "$text" ] && exit;
   fi
     case $asklang in
-      "id" ) RESULT=$(trans :id -b -join-sentence "$text"); notify; exit 
+      "id" ) RESULT=$(trans :id -b -join-sentence "$text"); notify
+        lang="id"; mkVocab; exit 
         ;;
-      "en" ) RESULT=$(trans :en -b -join-sentence "$text"); notify; exit 
+      "en" ) RESULT=$(trans :en -b -join-sentence "$text"); notify 
+        lang="en"; mkVocab; exit 
         ;;
       * ) trans :id -b -join-sentence "$text"; exit
         ;;
