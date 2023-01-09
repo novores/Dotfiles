@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# dependency: dunst, libnotify, translate-shell, dmenu
+
 notiduration="10000"
 clipduration="10000"
 TITLE="translated"
@@ -7,7 +9,7 @@ dmenu="dmenu -s -nb #1d2021 -nf #ebdbb2 -sb #e78a4e -sf #282828"
 text=$(printf 'paste' | $dmenu -p "insert text")
 
 notify() {
-  notify-send -t $notiduration "$TITLE" "$RESULT"
+  notify-send -t $notiduration -i gnome-translate "$TITLE" "$RESULT"
 }
 mkVocab() {
   printf "[$lang] $text\t=\t$RESULT\n" >> .vocabulary 
@@ -21,15 +23,13 @@ while : ; do
     [ -z "$text" ] && exit;
   fi
     case $asklang in
-      "id" ) RESULT=$(trans :id -b -join-sentence "$text"); notify
+      "id" ) RESULT=$(trans :id -join-sentence -no-ansi -indent 0 "$text" | tail -1); notify
         lang="id"; mkVocab; exit 
         ;;
-      "en" ) RESULT=$(trans :en -b -join-sentence "$text"); notify 
+      "en" ) RESULT=$(trans :en -join-sentence -no-ansi -indent 0 "$text" | tail -1); notify 
         lang="en"; mkVocab; exit 
         ;;
       * ) trans :id -b -join-sentence "$text"; exit
         ;;
     esac;
 done
-    
-  
