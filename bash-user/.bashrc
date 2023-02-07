@@ -11,6 +11,7 @@ export VISUAL='nvim'
 # set PATH
 export PATH="/home/novores/.local/bin:$PATH"
 export LC_COLLATE="C"
+export OPENAI_API_KEY="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"
 
 # set nnn plugin env
 export NNN_FIFO=/tmp/nnn.fifo

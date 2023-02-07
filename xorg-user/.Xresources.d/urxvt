@@ -1,6 +1,6 @@
 
 ! *.font:                     xft:Hack Nerd Font Mono:style=Regular:size=10
-URxvt.font:                 xft:Hack Nerd Font Mono:style=Regular:size=10.5
+URxvt.font:                 xft:SFMono Nerd Font:style=Regular:size=12
 !URxvt.letterSpace:          -1
 URxvt.depth:                32
 URxvt*scrollBar:            false 
