@@ -2,7 +2,7 @@
 
 #Edit sexy-bash-prompt color
 PROMPT_USER_COLOR="$(tput bold)$(tput setaf 154)"
-source ~/.bash_prompt
+[[ -e ~/.bash_prompt ]] && source ~/.bash_prompt || echo -e "WARNING: bash_prompt file does'nt exist, please install it from github if you want sexy bash prompt"
 
 # set default text editor
 export EDITOR='nvim'
@@ -11,7 +11,6 @@ export VISUAL='nvim'
 # set PATH
 export PATH="/home/novores/.local/bin:$PATH"
 export LC_COLLATE="C"
-export OPENAI_API_KEY="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"
 
 # set nnn plugin env
 export NNN_FIFO=/tmp/nnn.fifo
@@ -31,12 +30,17 @@ export MANPAGER='less -s -M +Gg'
 #Managing history
 HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoredups
-HISTSIZE=2000
-HISTFILESIZE=2000
+HISTSIZE=1000
+HISTFILESIZE=1000
 shopt -s histappend
 
 # generate zoxide
 eval "$(zoxide init bash)"
+
+# autostart tmux
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    tmux attach || tmux >/dev/null 2>&1
+fi
 
 #color variable
 blk='\[\033[01;30m\]'   # Black
@@ -49,7 +53,7 @@ cyn='\[\033[01;36m\]'   # Cyan
 wht='\[\033[01;37m\]'   # White
 clr='\[\033[00m\]'      # Reset
 
-####-functions-####{{{
+# FUNCTIONS
 cam(){
   fswebcam -r 720x720 -F 20 "$HOME/Gambar/camshot/$(date +%s).jpg"
 }
@@ -102,9 +106,10 @@ n () {
 #prompt
 # my_prompt() {
 #   PS1="$ylw$(whoami)$clr$wht at$clr $grn\w$clr $(git_branch)\n\$ "
-# }}}}
+#}
 
-####-aliases-####{{{
+# ALIASES
+
 # alias tmux="tmux attach || tmux"
 alias N='sudo -E nnn -dH'
 alias ls="ls --color=auto"
@@ -133,6 +138,8 @@ alias gp="git push"
 alias gc="git commit"
 alias gd="git diff"
 alias gl="git log"
+alias gch="git checkout"
+alias gb="git branch"
 ### Navigation ###
 alias ..='cd ..;pwd'
 alias ...='cd ../..;pwd'
@@ -141,7 +148,7 @@ alias tree='tree --dirsfirst -F'
 alias mkdir='mkdir -p -v'
 alias ll='ls -l'
 alias la='ls -la'
-#}}}
+
 
 ###-begin-npm-completion-###{{{
 

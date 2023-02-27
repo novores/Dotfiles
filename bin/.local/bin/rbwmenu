@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 # Simple script to interact with (some part of) rbw (github.com/doy/rbw) from dmenu
 # mintezpresso
 
@@ -16,7 +16,7 @@ dmenu="dmenu -nb #1d2021 -nf #ebdbb2 -sb #e78a4e -sf #282828"
 entry=$(rbw list --fields name,user| $dmenu  -p "Select password")
 [ -z "$entry" ] && exit 1
 
-term="if [[ -n $TMUX ]]; then st -e tmux a; tmux neww ; else st -e ; fi)"
+term="if [ -n $TMUX ]; then st -e tmux a; tmux neww ; else st -e ; fi)"
 # Only functions here. scroll down for script operation
 editentry () { dunstify -i bitwarden -t 5000 "Please read instruction carefully before saving new passowrd" && $TERM rbw edit $entry && exit ;}
 

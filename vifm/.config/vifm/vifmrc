@@ -89,13 +89,15 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15E %20d  "
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/.local/bin/
+mark r /
 mark h ~/
 mark u /run/media/novores
 mark v ~/Videos/
-mark d ~/Dotfiles/
+mark D ~/Dotfiles/
 mark c ~/.config/
-mark D ~/Downloads/
+mark d ~/Downloads/
+mark l ~/.local/
+mark n ~/Nextcloud/
 
 " ------------------------------------------------------------------------------
 
@@ -532,7 +534,7 @@ nnoremap K 5k
 " file types
 set classify=' :dir:/, :exe:, :reg:, :link:'
 " Dir
-set classify+='מּ ::Mega/,,Nextcloud/::, ::Downloads/::, ::Developments/::'
+set classify+='מּ ::Mega/,,Nextcloud/::, ::Downloads/::, ::Developments/::, ::Videos/::,󰈙 ::Documents/::, ::Dotfiles/::, ::Gitrepos/::, ::Music/,,Musics/::, ::Pictures/::'
 " various file names
 set classify+='蘿 ::*.m3u::, ::*.tex::, ::*.gpg::, ::*.json::, ::*.php::, ::*.sass::, ::*.css,,*.scss::, ::*.md::, ::*.vim::, ::*.py::, ::*.js::, ::*.conf,,*rc::, ::../::, ::*.lua::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
 " archives

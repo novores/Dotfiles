@@ -1,1 +1,88 @@
-../../../../Developments/Dotless/bin-dwm/.local/bin/dwmstatus
+#!/bin/dash
+
+# ^c$var^ = fg color
+# ^b$var^ = bg color
+
+# load colors
+black=#32302f
+darkblack=#1d2021
+grey=#3c3836
+green=#a9b665
+white=#d4be98
+blue=#7daea3
+darkblue=#45707a
+red=#ea6962
+darkred=#c14a4a
+magenta=#d3869b
+yellow=#e78a4e
+darkyellow=#d79921
+
+cpu() {
+  cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
+  printf "^c$darkblack^^b$blue^ "CPU" ^d^%s" "^c$white^^b$black^ $cpu_val ^d^"
+}
+
+battery() {
+  get_capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+  case "$(cat /sys/class/power_supply/AC/online)" in 
+    1) printf "^b$green^^c$darkblack^  ^d^%s" "^c$white^^b$black^ $get_capacity% ^d^";;
+    0) printf "^b$blue^^c$darkblack^  ^d^%s" "^c$white^^b$black^ $get_capacity% ^d^";;
+  esac
+}
+
+brightness() {
+  get_brightness=$(xbacklight -get | cut -d '.' -f 1)
+  printf "^b$blue^^c$darkblack^  ^d^%s" "^c$white^^b$black^ $get_brightness% ^d^"
+}
+
+mem() {
+  get_mem=$(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)
+  printf "^b$blue^^c$darkblack^  ^d^%s" "^c$white^^b$black^ $get_mem ^d^"
+}
+
+ wlan() {
+  #  #iwd
+  # get_ssid=$(iwctl station wlan0 show | awk 'NR==7 {print $3}')
+  get_ssid=$(iwctl station wlan0 show | awk '/network/ {print $3}')
+   # get_ssid=$(wpa_cli status | awk NR==4 | cut -c 6-20) #wpa_supplicant
+ 	case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
+     up) printf "^c$darkblack^^b$blue^ 直 ^d^%s" "^c$white^^b$black^ $get_ssid ^d^";;
+     down) printf "^c$darkblack^^b$red^ 睊 ^d^%s" "^c$white^^b$black^ Disconnect ^d^" ;;
+ 	esac
+ }
+
+clock() {
+	printf "^c$darkblack^^b$blue^  ^d^%s" "^c$white^^b$black^ $(date '+%_a,%e %H:%M') ^d^"
+}
+
+volume() {
+  vol=$(pamixer --get-volume)
+  state=$(pamixer --get-mute)
+
+  if [ "$state" = "true" ] || [ "$vol" -eq 0 ]; then
+    printf "^c$darkblack^^b$red^ 婢 ^d^%s" "^c$white^^b$black^ mute ^d^"
+  else
+    printf "^c$darkblack^^b$blue^ 墳 ^d^%s" "^c$white^^b$black^ $vol% ^d^"
+  fi
+}
+
+mpd() {
+  get_artist=$(mpc -f "%artist%"| awk NR==1 | cut -c 1-30)
+  get_title=$(mpc -f "%title%"| awk NR==1 | cut -c 1-30)
+  if pgrep mpd > /dev/null; then
+    case "$(mpc status -f %state% | awk NR==2 | cut -c-9)" in
+      "[playing]") printf "^b$blue^^c$darkblack^ MPD ^b$black^^c$white^  ^d^%s" "^b$black^^c$blue^$get_artist^c$white^ $get_title ^d^" 
+      ;;
+      "[paused] ") printf "^b$green^^c$darkblack^ MPD ^b$black^^c$white^  ^d^%s" "^b$black^^c$blue^$get_artist^c$white^ $get_title ^d^" 
+      ;;
+      *) printf "^b$darkyellow^^c$darkblack^ MPD ^d^%s" "^b$black^ Stopped ^d^" 
+      ;;
+    esac
+  else
+    printf "^b$red^^c$darkblack^ MPD ^d^%s" "^b$black^^c$white^ Offline ^d^"
+  fi
+}
+
+while true; do
+  sleep 1 && xsetroot -name "$(mpd) $(volume) $(brightness) $(cpu) $(mem) $(wlan) $(battery) $(clock)"
+done

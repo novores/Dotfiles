@@ -1,1 +1,8 @@
-../../../../Developments/Dotless/bin-dwm/.local/bin/startdwm
+#!/bin/dash
+
+# exec dwm in loop
+while true; do
+  /usr/local/bin/dwm 2> ~/.dwm.log
+done
+
+
