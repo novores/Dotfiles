@@ -5,3 +5,7 @@
 # fi
 dbus-update-activation-environment --all
 exec ~/.local/bin/startdwm
+
+# export XDG_SESSION_TYPE=x11
+# export GDK_BACKEND=x11
+# exec gnome-session

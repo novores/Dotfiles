@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env bash
+
 # Simple script to interact with (some part of) rbw (github.com/doy/rbw) from dmenu
 # mintezpresso
 
@@ -13,39 +14,42 @@ dmenu="dmenu -nb #1d2021 -nf #ebdbb2 -sb #e78a4e -sf #282828"
 
 [ ! -f "$HOME/.config/rbw/config.json" ] && dunstify -i bitwarden -t 15000 "You haven't configured rbw yet" "Run \"rbw config set email your_bit_warden_login_email\" from terminal to config. Once that's done, start rbwmenu again" && exit 1
 
-entry=$(rbw list --fields name,user| $dmenu  -p "Select password")
+entry=$(rbw list --fields name,user | tr '\t' ' ' | $dmenu -p "Select password")
 [ -z "$entry" ] && exit 1
 
-term="if [ -n $TMUX ]; then st -e tmux a; tmux neww ; else st -e ; fi)"
 # Only functions here. scroll down for script operation
 editentry () { dunstify -i bitwarden -t 5000 "Please read instruction carefully before saving new passowrd" && $TERM rbw edit $entry && exit ;}
 
-getpass=$(rbw get $entry)
+getpass=$(rbw get --field password $entry)
 
-getlogin=$(rbw ls --fields name,user | grep "$entry" | awk '{print $2}')
+getlogin=$(rbw ls --fields name,user | tr '\t' ' ' | grep "$entry" | awk '{print $2}')
 
 nologinandpass () { dunstify -i bitwarden -5000 "Both username and password are empty" "Consider adding them maybe \?" && exit 1 ;}
 
-nologin () { printf "$getpass" | xsel -ib -t $clipduration\
+nologin () { printf "%s" "$getpass" | xsel -ib -t $clipduration\
     && dunstify -i bitwarden -t 5000 "No username found for \"$entry\"" "Password copied to clipboard" && exit
 }
 
-nopass () { printf "$getlogin" | xsel -ib -t $clipduration\
+nopass () { printf "%s" "$getlogin" | xsel -ib -t $clipduration\
     && dunstify -i bitwarden -t 5000 "No password found for \"$entry\"" "Username copied to clipboard" && exit
 }
 
 haveloginandpass () {
-    printf "$getlogin" | xsel -ib -t $clipduration
-    clickme=$(dunstify -i bitwarden -t "$notiduration" --action="default,Reply" "Username copied to clipboard" "Click this to copy password to clipboard\n\n<b>This notification will last for "$(($notiduration/1000))" seconds</b>")
+    printf "%s" "$getlogin" | xsel -ib -t $clipduration
+    clickme=$(dunstify -i bitwarden -t "$notiduration" --action="default,Reply" "Username copied to clipboard" "Click this to copy password to clipboard\n\n<b>This notification will last for "$((notiduration/1000))" seconds</b>")
     [ "$clickme" = "1" ] && exit 1
-    [ "$clickme" = "2" ] && printf "$getpass" | xsel -ib -t $clipduration
+    [ "$clickme" = "2" ] && printf "%s" "$getpass" | xsel -ib -t $clipduration
     exit
 }
 
 deleteentry () { confirm=$(printf "Yes\nNo" | $dmenu  -p "Confirm deleting \"$entry\" ?")
     [ -z "$confirm" ] && exit 1
     [ "$confirm" = "No" ] && exit 1
-    [ "$confirm" = "Yes" ] && rbw delete "$entry" && dunstify -i bitwarden "Success" "Entry \"$entry\" deleted" || dunstify -i bitwarden "Failed" "Entry \"$entry\" not deleted"
+    if [ "$confirm" = "Yes" ];then
+      rbw delete "$entry" && dunstify -i bitwarden "Success" "Entry \"$entry\" deleted"
+      else 
+        dunstify -i bitwarden "Failed" "Entry \"$entry\" not deleted"
+    fi
 }
 
 while : ; do
@@ -55,11 +59,11 @@ while : ; do
 
         "1. Password" ) # print password to clipboard
             [ -z "$getpass" ] && dunstify -i bitwarden -t 3000 "rbwmenu" "Entry for <b>\"$entry\"</b> had no password" && exit
-            printf "$getpass" | xsel -ib -t $clipduration && dunstify -i bitwarden "Password for \"$entry\"" "has been copied to clipboard" && exit ;;
+            printf "%s" "$getpass" | xsel -ib -t $clipduration && dunstify -i bitwarden "Password for \"$entry\"" "has been copied to clipboard" && exit ;;
 
         "2. Username" ) # print username to clipboard
             [ -z "$getlogin" ] && dunstify -i bitwarden -t 3000 "rbwmenu" "Entry for <b>\"$entry\"</b> had no username" && exit 1
-            printf "$getlogin" | xsel -ib -t $clipduration && dunstify -i bitwarden "Username for \"$entry\"" "has been copied to clipboard" && exit ;;
+            printf "%s" "$getlogin" | xsel -ib -t $clipduration && dunstify -i bitwarden "Username for \"$entry\"" "has been copied to clipboard" && exit ;;
         "3. Both" )
             [ ! "$getpass" ] && [ ! "$getlogin" ] && nologinandpass
             [ "$getpass" ] && [ ! "$getlogin" ] && nologin

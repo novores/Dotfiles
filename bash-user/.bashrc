@@ -1,20 +1,27 @@
-# Run twolfson/sexy-bash-prompt
+#!/bin/bash
 
+# Run twolfson/sexy-bash-prompt
 #Edit sexy-bash-prompt color
-PROMPT_USER_COLOR="$(tput bold)$(tput setaf 154)"
-[[ -e ~/.bash_prompt ]] && source ~/.bash_prompt || echo -e "WARNING: bash_prompt file does'nt exist, please install it from github if you want sexy bash prompt"
+
+LP_MARK_PREFIX=$'\n'
+source $HOME/Gitrepos/liquidprompt/liquidprompt
+source $HOME/Gitrepos/liquidprompt/themes/powerline/powerline.theme
+source $HOME/Gitrepos/liquidprompt/themes/alternate_vcs/alternate_vcs.theme
+
+# PROMPT_USER_COLOR="$(tput bold)$(tput setaf 154)"
+# [[ -e /home/novores/.bash_prompt ]] && source /home/novores/.bash_prompt || echo -e "WARNING: bash_prompt file does'nt exist, please install it from github if you want sexy bash prompt"
 
 # set default text editor
 export EDITOR='nvim'
 export VISUAL='nvim'
 
 # set PATH
-export PATH="/home/novores/.local/bin:$PATH"
 export LC_COLLATE="C"
 
 # set nnn plugin env
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='p:preview-tabbed;n:nuke;m:nmount'
+# export NNN_FIFO=/tmp/nnn.fifo
+# export NNN_PLUG='p:preview-tabbed;n:nuke;m:nmount'
+# export NNN_OPENER='nuke'
 
 #set color-manpage
 # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
@@ -109,8 +116,7 @@ n () {
 #}
 
 # ALIASES
-
-# alias tmux="tmux attach || tmux"
+alias blue="bluetoothctl"
 alias N='sudo -E nnn -dH'
 alias ls="ls --color=auto"
 alias wsh="wiki-search-html"
@@ -124,12 +130,7 @@ alias kpcli="keepassxc-cli open $HOME/Nextcloud/Apps/X/Sandi.kdbx"
 # alias nmtui="bspc node --to-desktop ^6 --follow -t pseudo_tiled| nmtui"
 alias neo="neofetch"
 alias cowsayf="cowsay $(fortune)"
-alias pastel="pastel -m 8bit" # 
-### xbps ###
-alias xi="sudo xbps-install"
-alias xr="sudo xbps-remove"
-alias xc="sudo xbps-reconfigure"
-alias xq="xbps-query"
+# alias pastel="pastel -m 8bit"
 ### Git ###
 alias gst="git status"
 alias ga="git add"

@@ -1,94 +1,71 @@
-" vim: filetype=vim
-
 set vicmd=nvim
-
 set syscalls
-
 "set relativenumber
-
 set trash
 
 " This is how many directories to store in the directory history.
-
 set history=100
 
 " Automatically resolve symbolic links on l or Enter.
-
 set nofollowlinks
 
 " Natural sort of (version) numbers within text.
-
 set sortnumbers
 
 " Maximum number of changes that can be undone.
-
 set undolevels=100
 
 " Use Vim's format of help file (has highlighting and "hyperlinks").
 " If you would rather use a plain text help file set novimhelp.
-
 set vimhelp
 
 " If you would like to run an executable file when you
 " press Enter, l or Right Arrow, set this.
-
 set norunexec
 
 " List of color schemes to try (picks the first one supported by the terminal)
-
 colorscheme gruvbox
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
 " See man date or man strftime for details.
-
 set timefmt=%m/%d\ %H:%M
 
 " Show list of matches on tab completion in command-line mode
-
 set wildmenu
 
 " Display completions in a form of popup with descriptions of the matches
-
 set wildstyle=popup
 
 " Display suggestions in normal, visual and view modes for keys, marks and
 " registers (at most 5 files).  In other view, when available.
-
 set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
 
 " Ignore case in search patterns unless it contains at least one uppercase
 " letter
-
 set ignorecase
 set smartcase
 
 " Don't highlight search results automatically
-
 set nohlsearch
 
 " Use increment searching (search while typing)
-
 set incsearch
 
 " Try to leave some space from cursor to upper/lower border in lists
-
 set scrolloff=4
 
 " Don't do too many requests to slow file systems
-
 if !has('win')
     set slowfs=curlftpfs
 endif
 
 " Set custom status line look
-
 set statusline="  Hint: %z%= %A %10u:%-7g %15E %20d  "
 
 " ------------------------------------------------------------------------------
 
 " :mark mark /full/directory/path [filename]
-
 mark r /
 mark h ~/
 mark u /run/media/novores
@@ -119,6 +96,7 @@ command! zip zip -r %c.zip %f
 command! gzip gzip -v %f
 command! gunzip gunzip -v %f
 command! unzip unzip %f
+command! unrar unrar x %f
 command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
@@ -158,7 +136,7 @@ command! encrypt gpg --encrypt %f
 " program.
 
 " Pdf
-filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
+filextype {*.pdf,*.epub},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
 fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
 
 " PostScript
@@ -186,7 +164,7 @@ filextype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
        \ ffplay -nodisp -autoexit %c,
        \ {Play using MPlayer}
        \ mplayer %f,
-fileviewer {*.mp3},<audio/mpeg> mediainfo 
+fileviewer {*.mp3,*.m4a},<audio/mpeg> mediainfo %c | head -20 2>&1 
 fileviewer {*.flac},<audio/flac> soxi
 
 " Video
@@ -204,7 +182,7 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
            \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
            \*.as[fx]},
           \<video/*>
-         \ ffprobe -pretty %c 2>&1
+         \ mediainfo %c| head -20  2>&1 
 
 " Web
 filextype {*.html,*.htm},<text/html>
@@ -322,7 +300,7 @@ filetype {*.7z},<application/x-7z-compressed>
 fileviewer {*.7z},<application/x-7z-compressed> 7z l %c
 
 " Office files
-filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
+filextype {*.csv,*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
          \<application/vnd.openxmlformats-officedocument.*,
           \application/msword,
           \application/vnd.ms-excel>
@@ -410,6 +388,7 @@ vnoremap w :view<cr>gv
 
 " Open file in existing instance of gvim
 nnoremap o :!gvim --remote-tab-silent %f<cr>
+
 " Open file in new instance of gvim
 nnoremap O :!gvim %f<cr>
 
@@ -496,41 +475,41 @@ nnoremap K 5k
 "
 " let $VIFM_SERVER_NAME = v:servername
 
-" fileviewer *.pdf
-"         \ vifmimg pdf %px %py %pw %ph %c
-"         \ %pc
-"         \ vifmimg clear
-"
-"     fileviewer *.djvu
-"         \ vifmimg djvu %px %py %pw %ph %c
-"         \ %pc
-"         \ vifmimg clear
-"
-"     fileviewer *.epub
-"         \ vifmimg epub %px %py %pw %ph %c
-"         \ %pc
-"         \ vifmimg clear
-"
-"     fileviewer <video/*>
-"         \ vifmimg video %px %py %pw %ph %c
-"         \ %pc
-"         \ vifmimg clear
-"
-"     fileviewer <image/*>
-"         \ vifmimg draw %px %py %pw %ph %c
-"         \ %pc
-"         \ vifmimg clear
-"
-"     fileviewer <audio/*>
-"         \ vifmimg audio %px %py %pw %ph %c
-"         \ %pc
-"         \ vifmimg clear
-"
-"     fileviewer <font/*>
-"         \ vifmimg font %px %py %pw %ph %c
-"         \ %pc
-"         \ vifmimg clear
-
+    " fileviewer *.pdf
+    "     \ vifmimg pdf %px %py %pw %ph %c
+    "     \ %pc
+    "     \ vifmimg clear
+    "
+    " fileviewer *.djvu
+    "     \ vifmimg djvu %px %py %pw %ph %c
+    "     \ %pc
+    "     \ vifmimg clear
+    "
+    " fileviewer *.epub
+    "     \ vifmimg epub %px %py %pw %ph %c
+    "     \ %pc
+    "     \ vifmimg clear
+    "
+    " fileviewer <video/*>
+    "     \ vifmimg video %px %py %pw %ph %c
+    "     \ %pc
+    "     \ vifmimg clear
+    "
+    " fileviewer <image/*>
+    "     \ vifmimg draw %px %py %pw %ph %c
+    "     \ %pc
+    "     \ vifmimg clear
+    "
+    " fileviewer <audio/*>
+    "     \ vifmimg audio %px %py %pw %ph %c
+    "     \ %pc
+    "     \ vifmimg clear
+    "
+    " fileviewer <font/*>
+    "     \ vifmimg font %px %py %pw %ph %c
+    "     \ %pc
+    "     \ vifmimg clear
+    
 " file types
 set classify=' :dir:/, :exe:, :reg:, :link:'
 " Dir
@@ -548,3 +527,4 @@ set classify+='辶 ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mk
 " office files
 set classify+=' ::*.doc,,*.docx,,*.odt::, ::*.xls,,*.xls[mx]::, ::*.pptx,,*.ppt::'
 
+" vim: filetype=vim

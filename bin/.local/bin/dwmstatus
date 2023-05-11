@@ -23,10 +23,10 @@ cpu() {
 }
 
 battery() {
-  get_capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+   battery_level=`acpi -b | grep -P -o '\d+(?=%)'`
   case "$(cat /sys/class/power_supply/AC/online)" in 
-    1) printf "^b$green^^c$darkblack^  ^d^%s" "^c$white^^b$black^ $get_capacity% ^d^";;
-    0) printf "^b$blue^^c$darkblack^  ^d^%s" "^c$white^^b$black^ $get_capacity% ^d^";;
+    1) printf "^b$green^^c$darkblack^  ^d^%s" "^c$white^^b$black^ $battery_level% ^d^";;
+    0) printf "^b$blue^^c$darkblack^  ^d^%s" "^c$white^^b$black^ $battery_level% ^d^";;
   esac
 }
 
@@ -86,3 +86,5 @@ mpd() {
 while true; do
   sleep 1 && xsetroot -name "$(mpd) $(volume) $(brightness) $(cpu) $(mem) $(wlan) $(battery) $(clock)"
 done
+
+# vim:ft=bash

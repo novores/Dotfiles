@@ -1,10 +1,10 @@
-#!/bin/dash
+#!/usr/bin/env bash
 
 # dependency: dunst, libnotify, translate-shell, dmenu
 
 notiduration="10000"
 clipduration="10000"
-TITLE="translated"
+TITLE="translations results"
 dmenu="dmenu -s -nb #1d2021 -nf #ebdbb2 -sb #e78a4e -sf #282828"
 text=$(printf 'paste' | $dmenu -p "insert text")
 
@@ -12,7 +12,7 @@ notify() {
   notify-send -t $notiduration -i gnome-translate "$TITLE" "$RESULT"
 }
 mkVocab() {
-  printf "[$lang] $text\t=\t$RESULT\n" >> .vocabulary 
+  printf "%s" "[$lang] $text\t=\t$RESULT\n" >> .vocabulary 
 }
 
 while : ; do

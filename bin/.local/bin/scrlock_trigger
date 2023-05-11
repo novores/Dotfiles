@@ -1,0 +1,11 @@
+#!/bin/dash
+
+# xautolock \
+#   -time 7 -locker slock -killtime 30 \
+#   -killer "systemctl suspend" -notify 30 \
+#   -notifier "notify-send 'NOTICE' 'will be locked in 30s'; paplay /usr/share/sounds/freedesktop/stereo/message.oga"
+
+xset s 10 30
+xss-lock --notifier="notify-send 'NOTICE' 'will be locked in 30s'" -- slock
+
+# vim:ft=bash
