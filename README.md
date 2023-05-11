@@ -59,4 +59,3 @@ https://user-images.githubusercontent.com/71489102/167232838-dfa1b8f0-9697-4b46-
 └── xinitrc* 
 
 ```
-  > for the switch-theme script I will explain later, while don't use it yet because it will affect your entire config file.
