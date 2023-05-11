@@ -7,7 +7,9 @@ https://user-images.githubusercontent.com/71489102/167232838-dfa1b8f0-9697-4b46-
 # Installation
 
 you need 'stow' package for installation. than run:
-`git clone https://github.com/novores/dotfiles ~/dotfiles && stow ~/dotfiles`
+```bash
+git clone https://github.com/novores/dotfiles ~/dotfiles && stow ~/dotfiles
+```
 
 
 ```bash
