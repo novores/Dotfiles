@@ -11,6 +11,8 @@ you need 'stow' package for installation. than run:
 git clone https://github.com/novores/dotfiles ~/dotfiles && stow ~/dotfiles
 ```
 
+list configs in this repo:
+
 
 ```bash
 ./
