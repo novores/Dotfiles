@@ -3,10 +3,8 @@
 # Run twolfson/sexy-bash-prompt
 #Edit sexy-bash-prompt color
 
-LP_MARK_PREFIX=$'\n'
-source $HOME/Gitrepos/liquidprompt/liquidprompt
-source $HOME/Gitrepos/liquidprompt/themes/powerline/powerline.theme
-source $HOME/Gitrepos/liquidprompt/themes/alternate_vcs/alternate_vcs.theme
+source /usr/bin/liquidprompt
+
 
 # PROMPT_USER_COLOR="$(tput bold)$(tput setaf 154)"
 # [[ -e /home/novores/.bash_prompt ]] && source /home/novores/.bash_prompt || echo -e "WARNING: bash_prompt file does'nt exist, please install it from github if you want sexy bash prompt"
