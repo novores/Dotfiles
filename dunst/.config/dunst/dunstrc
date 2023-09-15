@@ -24,7 +24,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 300
+    width = (0,450)
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -90,7 +90,7 @@
     frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#928374" 
+    frame_color = "#89B4FA"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -245,7 +245,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 10
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -303,31 +303,43 @@
     # using the resolution and physical size. This might be useful in setups
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
-
-
+    
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#3c3836"
-    foreground = "#ebdbb2"
-    timeout = 10
-    # Icon for notifications with low urgency, uncomment to enable
-    #default_icon = /path/to/icon
+background = "#1E1E2E"
+foreground = "#CDD6F4"
 
 [urgency_normal]
-    background = "#3c3836"
-    foreground = "#ebdbb2"
-    timeout = 10
-    # Icon for notifications with normal urgency, uncomment to enable
-    #default_icon = /path/to/icon
+background = "#1E1E2E"
+foreground = "#CDD6F4"
 
 [urgency_critical]
-    background = "#BF616A"
-    foreground = "#ebdbb2"
-    frame_color = "#ff0000"
-    timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
-    #default_icon = /path/to/icon
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+frame_color = "#FAB387"
+
+# [urgency_low]
+#     # IMPORTANT: colors have to be defined in quotation marks.
+#     # Otherwise the "#" and following would be interpreted as a comment.
+#     background = "#282828"
+#     foreground = "#ebdbb2"
+#     timeout = 10
+#     # Icon for notifications with low urgency, uncomment to enable
+#     #default_icon = /path/to/icon
+#
+# [urgency_normal]
+#     background = "#282828"
+#     foreground = "#ebdbb2"
+#     timeout = 15
+#     # Icon for notifications with normal urgency, uncomment to enable
+#     #default_icon = /path/to/icon
+#
+# [urgency_critical]
+#     background = "#BF616A"
+#     foreground = "#ebdbb2"
+#     frame_color = "#ff0000"
+#     timeout = 0
+#     # Icon for notifications with critical urgency, uncomment to enable
+#     #default_icon = /path/to/icon
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

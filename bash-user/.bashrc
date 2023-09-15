@@ -1,13 +1,6 @@
 #!/bin/bash
 
-# Run twolfson/sexy-bash-prompt
-#Edit sexy-bash-prompt color
-
 source /usr/bin/liquidprompt
-
-
-# PROMPT_USER_COLOR="$(tput bold)$(tput setaf 154)"
-# [[ -e /home/novores/.bash_prompt ]] && source /home/novores/.bash_prompt || echo -e "WARNING: bash_prompt file does'nt exist, please install it from github if you want sexy bash prompt"
 
 # set default text editor
 export EDITOR='nvim'
@@ -16,13 +9,13 @@ export VISUAL='nvim'
 # set PATH
 export LC_COLLATE="C"
 
-# set nnn plugin env
-# export NNN_FIFO=/tmp/nnn.fifo
-# export NNN_PLUG='p:preview-tabbed;n:nuke;m:nmount'
-# export NNN_OPENER='nuke'
+# set nnn's environments
+set nnn plugin env
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_PLUG='l:launch;p:preview-tabbed;n:nuke;m:nmount'
+export NNN_OPENER='nuke'
 
-#set color-manpage
-# from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
+#set color-manpage. read: https://wiki.archlinux.org/index.php/Color_output_in_console#man
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
 export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
@@ -70,14 +63,17 @@ casts () {
 comp () {
   if [ -e config.h ]; then
     rm config.h
+    sudo make install 
+  else
+    printf "Warning: you're not in development directory!\n"
   fi
-  sudo make install 
 }
 
 find_largest_files() {
     du -h -x -s -- * | sort -r -h | head -20;
 }
 
+# nnn functions
 n () {
     # Block nesting of nnn in subshells
     if [[ "${NNNLVL:-0}" -ge 1 ]]; then
@@ -108,7 +104,7 @@ n () {
     fi
 }
 
-#prompt
+# prompt(uncomment this if you. dont want use liquidpromt)
 # my_prompt() {
 #   PS1="$ylw$(whoami)$clr$wht at$clr $grn\w$clr $(git_branch)\n\$ "
 #}
@@ -121,7 +117,6 @@ alias wsh="wiki-search-html"
 alias ws='wiki-search'
 alias wws="wormhole-william send"
 alias wwr="wormhole-william receive"
-alias kpcli="keepassxc-cli open $HOME/Nextcloud/Apps/X/Sandi.kdbx"
 # alias pomo="bspc node --to-desktop ^6 --follow -t pseudo_tiled | pomo"
 # alias nvim="bspc node --to-desktop ^3 --follow | nvim"
 # alias ncmpcpp="bspc node --to-desktop ^4 --follow -t pseudo_tiled && ncmpcpp"

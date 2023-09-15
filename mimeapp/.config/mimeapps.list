@@ -1,14 +1,10 @@
 [Default Applications]
 x-scheme-handler/tg=userapp-Telegram Desktop-J4L1G1.desktop
-x-scheme-handler/https=qutebrowser.desktop
-x-scheme-handler/http=qutebrowser.desktop
-text/html=org.qutebrowser.qutebrowser.desktop
-x-scheme-handler/about=qutebrowser.desktop
-x-scheme-handler/unknown=qutebrowser.desktop
 image/png=feh.desktop
 image/jpeg=feh.desktop
 image/jpg=feh.desktop
 image/svg+xml=org.inkscape.Inkscape.desktop
+image/x-xcf=gimp.desktop
 text/markdown=nvim.desktop
 text=nvim.desktop
 text/x-changelog=nvim.desktop
@@ -16,8 +12,38 @@ text/plain=nvim.desktop
 text/x-csrc=nvim.desktop
 text/x-lua=nvim.desktop
 application/pdf=org.pwmt.zathura.desktop
-image/x-xcf=gimp.desktop
 application/postscript=nvim.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.libreoffice.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-EG5241.desktop
+message/rfc822=userapp-Thunderbird-EG5241.desktop
+x-scheme-handler/mid=userapp-Thunderbird-EG5241.desktop
+x-scheme-handler/news=userapp-Thunderbird-E4DZ41.desktop
+x-scheme-handler/snews=userapp-Thunderbird-E4DZ41.desktop
+x-scheme-handler/nntp=userapp-Thunderbird-E4DZ41.desktop
+x-scheme-handler/feed=userapp-Thunderbird-7AWH51.desktop
+application/rss+xml=userapp-Thunderbird-7AWH51.desktop
+application/x-extension-rss=userapp-Thunderbird-7AWH51.desktop
+x-scheme-handler/webcal=userapp-Thunderbird-7YBD51.desktop
+text/calendar=userapp-Thunderbird-7YBD51.desktop
+application/x-extension-ics=userapp-Thunderbird-7YBD51.desktop
+x-scheme-handler/webcals=userapp-Thunderbird-7YBD51.desktop
+text/html=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-SFM190.desktop;userapp-Telegram Desktop-J4L1G1.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-EG5241.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-EG5241.desktop;
+x-scheme-handler/news=userapp-Thunderbird-E4DZ41.desktop;
+x-scheme-handler/snews=userapp-Thunderbird-E4DZ41.desktop;
+x-scheme-handler/nntp=userapp-Thunderbird-E4DZ41.desktop;
+x-scheme-handler/feed=userapp-Thunderbird-7AWH51.desktop;
+application/rss+xml=userapp-Thunderbird-7AWH51.desktop;
+application/x-extension-rss=userapp-Thunderbird-7AWH51.desktop;
+x-scheme-handler/webcal=userapp-Thunderbird-7YBD51.desktop;
+x-scheme-handler/webcals=userapp-Thunderbird-7YBD51.desktop;
+

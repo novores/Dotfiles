@@ -19,3 +19,5 @@
   magenta-dark:#b16286;
   magenta:     #d3869b;
 }
+
+/* vim:ft=css */

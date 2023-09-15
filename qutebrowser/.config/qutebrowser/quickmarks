@@ -11,3 +11,7 @@ nextcloud https://nch.pl/apps/dashboard/
 CUPS http://localhost:631/
 csv to ical https://csv-to-ical.chimbori.com/
 reddit https://libreddit.eu.org/
+hugo http://localhost:1313/
+syncthing http://127.0.0.1:8384/
+cloudflare https://dash.cloudflare.com/
+sogafime https://sogafime21.site/

@@ -3,10 +3,11 @@
 # dependency: dunst, libnotify, translate-shell, dmenu
 
 notiduration="10000"
-clipduration="10000"
 TITLE="translations results"
-dmenu="dmenu -s -nb #1d2021 -nf #ebdbb2 -sb #e78a4e -sf #282828"
-text=$(printf 'paste' | $dmenu -p "insert text")
+dmenu="dmenu -nb #A6E3A1 -nf #1E1E2E -sb #1E1E2E -sf #A6E3A1"
+
+text=$(printf 'Paste from clipboard' | $dmenu -p "insert text")
+[ -z "$text" ] && exit 1;
 
 notify() {
   notify-send -t $notiduration -i gnome-translate "$TITLE" "$RESULT"
@@ -15,13 +16,12 @@ mkVocab() {
   printf "%s" "[$lang] $text\t=\t$RESULT\n" >> .vocabulary 
 }
 
-while : ; do
-  asklang=$(printf "en\nid" | $dmenu -p "choose language")
-  [ -z "$asklang" ] && exit
-  if [[ $text == "paste" ]]; then 
+while : ;do
+  if [[ $text == "Paste from clipboard" ]]; then 
     text=$(xsel -ob)
-    [ -z "$text" ] && exit;
   fi
+  asklang=$(printf "en\nid" | $dmenu -p "choose language")
+  [ -z "$asklang" ] && exit 1
     case $asklang in
       "id" ) RESULT=$(trans :id -join-sentence -no-ansi -indent 0 "$text" | tail -1); notify
         lang="id"; mkVocab; exit 

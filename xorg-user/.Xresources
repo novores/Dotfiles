@@ -1,5 +1,4 @@
 ! colorscheme
-#include "/home/novores/.Xresources.d/colors/gruvbox"
-
-*borderpx: 0
-*.font : JetBrainsMono Nerd Font:pixelsize=15:antialias=true:autohint=true
+#include "/home/novores/.Xresources.d/colors/catppuccin"
+#include "/home/novores/.Xresources.d/dwm"
+#include "/home/novores/.Xresources.d/st"

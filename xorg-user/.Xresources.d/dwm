@@ -1,0 +1,8 @@
+dwm.borderpx: 2
+dwm.font : JetBrainsMono Nerd Font:pixelsize=12:antialias=true:autohint=true
+dwm.normbgcolor:    #1E1E2E 
+dwm.normfgcolor:     #CDD6F4        
+dwm.normbordercolor: #CDD6F4       
+dwm.selbgcolor:      #1E1E2E              
+dwm.selfgcolor:      #A6E3A1 
+dwm.selbordercolor:  #A6E3A1         

@@ -3,7 +3,17 @@
 #  ┣┻┓┗━┓┣━┛┃╻┃┃┃┃
 #  ┗━┛┗━┛╹  ┗┻┛╹ ╹
 
-bspc monitor -d     ﳁ 
+intern=LVDS1
+extern=VGA1
+ if [[ $(xrandr -q | grep "$extern connected") ]];
+ then
+    xrandr --output "$extern" --right-of "$intern" --auto
+    bspc monitor $intern -d 1 2 3 4 5
+    bspc monitor $extern -d 6 7 8 9 10
+else
+    xrandr --output "$extern" --off
+    bspc monitor -d 1 2 3 4 5 6
+ fi
 
 xsetroot -cursor_name left_ptr
 
@@ -12,7 +22,7 @@ bspc config border_width                3
 bspc config focused_border_color        "#b8bb26"
 bspc config normal_border_color         "#928374" 
 bspc config window_gap                  6
-bspc config focus_follows_pointer       false
+bspc config focus_follows_pointer       true
 
 bspc config split_ratio                 0.5
 bspc config gapless_monocle             true
@@ -23,29 +33,34 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #}}}
 
 #setting wallpaper#{{{
-feh --bg-scale --no-fehbg ~/Gambar/wallpapers/animation_gruvbox.jpg &
+feh --bg-fill  ~/Pictures/wallpapers/background.png &
 #}}}
 
 #load config .Xresources#{{{
-xrdb .Xresources &
+xrdb .Xresources
 #}}}
 
 #polybar#{{{
-pkill polybar;polybar -r &
+killall -x polybar
+if type "xrandr"; then
+  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    MONITOR=$m polybar --reload &
+  done
+else
+  polybar --reload &
+fi
 #}}}
 
 #Autostart#{{{
-/usr/libexec/polkit-mate-authentication-agent-1 & #polkit
-# picom --config ~/.config/picom/picom.conf & #picom
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+picom --config ~/.config/picom/picom.conf & #picom
 pkill unclutter;unclutter -root & #autohide cursor
-pkill conky;$HOME/.local/bin/start_conky & #conky
-#}}}
-
-#trigger lock program#{{{
-pkill xautolock;xautolock \
-  -time 7 -locker "betterlockscreen -l dim" -killtime 30 \
-  -killer "loginctl suspend" -notify 30 \
-  -notifier "notify-send 'NOTICE' 'sebentar lagi dikunci'" \
+# pkill conky;$HOME/.local/bin/start_conky & #conky
+pkill xbanish;xbanish &
+xset s 240 60; xset dpms 301;xss-lock -n ~/.local/bin/dim-screen.sh -- betterlockscreen --lock &
+# xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+pkill usermount; usermount &
+pkill battery.sh; /home/novores/.local/bin/battery.sh
 #}}}
 
 # {{{bspc rule
@@ -54,8 +69,8 @@ bspc rule -a zathura:feh rectangle=800x600+0+0 center=true
 bspc rule -a KeePassXC desktop=^6 follow=on state=floating focus=on
 bspc rule -a mpv state=fullscreen focus=on
 bspc rule -a Arandr state=floating
-bspc rule -a qutebrowser desktop=^2 follow=on
-bspc rule -a firefox desktop=^2 follow=on
+bspc rule -a qutebrowser desktop=2 follow=on
+bspc rule -a firefox desktop=2 follow=on
 bspc rule -a TelegramDesktop desktop=^5 follow=on
-bspc rule -a Soffice desktop=^5 follow=on
-bspc rule -a Inkscape desktop=^5 follow=on #}}}
+bspc rule -a Soffice desktop=3 follow=on
+bspc rule -a Inkscape desktop=4 follow=on #}}}

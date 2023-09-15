@@ -7,18 +7,18 @@
 
 # terminal emulator
 super + Return
-    xst
+  st
    # $HOME/.local/bin/urxvtdc 
 #rofi menus
 super + d
     rofi -show drun	
 super + F8
-    $HOME/Dotfiles/submodules/rofi-network-manager/rofi-network-manager.sh
+
 super + F9
     rofi -modi p:$HOME/.local/bin/rofi-power-menu -show p
 
 super + b
-  urxvt -e less ~/help.txt
+  st -e less ~/help.txt
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -30,10 +30,10 @@ super + Print
 
 #shortcut
 super + F1
-    qutebrowser
+   rofi-rbw
 
 super + F2
-	firefox
+	transmenu
 
 super + r
   redshift -P	
@@ -42,6 +42,12 @@ super + r
 # {{{mpc control
 alt + ctrl + {Left,Down,Up,Right} 
     {mpc prev,mpc stop,mpc toggle,mpc next} && notify-send "Now playing" "$(mpc current)"
+XF86AudioNext
+    mpc next && notify-send "Now playing" "$(mpc current)"
+XF86AudioPrev
+    mpc prev && notify-send "Now playing" "$(mpc current)"
+XF86AudioPlay
+    mpc toggle && notify-send "Now playing" "$(mpc current)"
       #}}}
 
 # {{{mpd control
@@ -54,26 +60,26 @@ alt + shift + m
     
 #{{{Audio
 XF86AudioRaiseVolume
-    pamixer -i 1 && dunstify -t 300 "Volume" "increase"
-
+    pamixer -i 2; paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+    
 XF86AudioLowerVolume
-    pamixer -d 1  && notify-send -t 300  "Volume" "decrease"
+    pamixer -d 2; paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga 
 
 XF86AudioMute
     pamixer -t && notify-send -t 300  "mute"
     #}}}
 
 #{{{LockScreen
-alt + ctrl + l
-    xautolock -locknow -locker "betterlockscreen -l dim" -killtime 10 -killer "loginctl suspend" -detectsleep
+XF86ScreenSaver
+  betterlockscreen -l
     #}}}
 
 #{{{Light
 XF86MonBrightnessUp
-    xbacklight -inc 1 && dunstify -t 1000 "Brightness" "increase"
+    xbacklight -inc 1
 
 XF86MonBrightnessDown
-    xbacklight -dec 1 && dunstify -t 1000 "Brightness" "decrease"
+    xbacklight -dec 1
 #}}}
 
 # {{{bspwm hotkeys

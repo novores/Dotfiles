@@ -24,7 +24,7 @@ set vimhelp
 set norunexec
 
 " List of color schemes to try (picks the first one supported by the terminal)
-colorscheme gruvbox
+colorscheme palenight
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -143,6 +143,8 @@ fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
         \ {View in zathura}
         \ zathura %f,
+        \ {View in gimp}
+        \ gimp %f,
         \ {View in gv}
         \ gv %c %i &,
 "Tex
@@ -159,11 +161,11 @@ filextype {*.djvu},<image/vnd.djvu>
 
 " Audio
 filextype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
-        \<audio/*>
-       \ {Play using ffplay}
-       \ ffplay -nodisp -autoexit %c,
-       \ {Play using MPlayer}
-       \ mplayer %f,
+          \<audio/*>
+          \ {Play using ffplay}
+          \ ffplay -nodisp -autoexit %c,
+          \ {Play using MPlayer}
+          \ mplayer %f,
 fileviewer {*.mp3,*.m4a},<audio/mpeg> mediainfo %c | head -20 2>&1 
 fileviewer {*.flac},<audio/flac> soxi
 
@@ -209,7 +211,14 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ {View in gpicview}
         \ gpicview %c,
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ identify %f
+      \ viu -w 60 %f,
+      \ identify %f
+" SVG
+filextype *.svg,
+      \ {view in inkview}
+      \ inkview %f,
+fileviewer *.svg
+      \ viu %f
 
 " OpenRaster
 filextype *.ora
@@ -474,41 +483,40 @@ nnoremap K 5k
 "     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
 "
 " let $VIFM_SERVER_NAME = v:servername
-
-    " fileviewer *.pdf
-    "     \ vifmimg pdf %px %py %pw %ph %c
-    "     \ %pc
-    "     \ vifmimg clear
-    "
-    " fileviewer *.djvu
-    "     \ vifmimg djvu %px %py %pw %ph %c
-    "     \ %pc
-    "     \ vifmimg clear
-    "
-    " fileviewer *.epub
-    "     \ vifmimg epub %px %py %pw %ph %c
-    "     \ %pc
-    "     \ vifmimg clear
-    "
-    " fileviewer <video/*>
-    "     \ vifmimg video %px %py %pw %ph %c
-    "     \ %pc
-    "     \ vifmimg clear
-    "
-    " fileviewer <image/*>
-    "     \ vifmimg draw %px %py %pw %ph %c
-    "     \ %pc
-    "     \ vifmimg clear
-    "
-    " fileviewer <audio/*>
-    "     \ vifmimg audio %px %py %pw %ph %c
-    "     \ %pc
-    "     \ vifmimg clear
-    "
-    " fileviewer <font/*>
-    "     \ vifmimg font %px %py %pw %ph %c
-    "     \ %pc
-    "     \ vifmimg clear
+ " fileviewer *.pdf
+ "        \ vifmimg pdf %px %py %pw %ph %c
+ "        \ %pc
+ "        \ vifmimg clear
+ "
+ "    fileviewer *.djvu
+ "        \ vifmimg djvu %px %py %pw %ph %c
+ "        \ %pc
+ "        \ vifmimg clear
+ "
+ "    fileviewer *.epub
+ "        \ vifmimg epub %px %py %pw %ph %c
+ "        \ %pc
+ "        \ vifmimg clear
+ "
+ "    fileviewer <video/*>
+ "        \ vifmimg video %px %py %pw %ph %c
+ "        \ %pc
+ "        \ vifmimg clear
+ "
+ "    fileviewer <image/*>
+ "        \ vifmimg draw %px %py %pw %ph %c
+ "        \ %pc
+ "        \ vifmimg clear
+ "
+ "    fileviewer <audio/*>
+ "        \ vifmimg audio %px %py %pw %ph %c
+ "        \ %pc
+ "        \ vifmimg clear
+ "
+ "    fileviewer <font/*>
+ "        \ vifmimg font %px %py %pw %ph %c
+ "        \ %pc
+ "        \ vifmimg clear
     
 " file types
 set classify=' :dir:/, :exe:, :reg:, :link:'
@@ -519,7 +527,7 @@ set classify+='蘿 ::*.m3u::, ::*.tex::, ::*.gpg::, ::*.json::, ::*.
 " archives
 set classify+='遲 ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
 " images
-set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.ai,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
 " audio
 set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
 " media

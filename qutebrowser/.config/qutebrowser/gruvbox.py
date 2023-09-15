@@ -7,7 +7,7 @@
 
 bg0_hard = "#1d2021"
 bg0_soft = '#32302f'
-bg0_normal = '#32302f'
+bg0_normal = '#282828'
 
 bg0 = bg0_normal
 bg1 = "#3c3836"
@@ -32,12 +32,12 @@ bright_orange = "#fe8019"
 
 dark_red = "#ea6962"
 dark_green = "#a9b665"
-dark_yellow = "#e78a4e"
+dark_yellow = "#d8a657"
 dark_blue = "#7daea3"
 dark_purple = "#d3869b"
 dark_aqua = "#89b482"
 dark_gray = "#d4be98"
-dark_orange = "#d65d0e"
+dark_orange = "#e78a4e"
 
 ### Completion
 
@@ -329,4 +329,4 @@ c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.selected.odd.fg
 
 # Background color for webpages if unset (or empty to use the theme's
 # color).
-c.colors.webpage.bg = bg4
+#c.colors.webpage.bg =
