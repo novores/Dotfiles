@@ -65,7 +65,7 @@ comp () {
     rm config.h
     sudo make install 
   else
-    printf "Warning: you're not in development directory!\n"
+    sudo make install 
   fi
 }
 
