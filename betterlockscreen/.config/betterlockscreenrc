@@ -15,7 +15,7 @@ wallpaper_cmd="feh --bg-fill"
 # default theme
 loginbox=28282866
 loginshadow=000000
-locktext="Type password to unlock..."
+locktext="kukurukuk"
 font="sans-serif"
 ringcolor=ffffffff
 insidecolor=00000000
@@ -33,4 +33,4 @@ bshlcolor=d23c3dff
 verifcolor=ffffffff
 wrongcolor=d23c3dff
 modifcolor=d23c3dff
-bgcolor=ebdbb2ff
+bgcolor=#1E1E2E

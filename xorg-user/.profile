@@ -1,6 +1,8 @@
 #!/bin/bash
 export PATH=/usr/local/bin:$HOME/.local/bin:$PATH
+export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORMTHEME=qt5ct
+wmname "LG3D"
 
 # Trigger ~/.bashrc commands
 [[ -f ~/.bashrc ]] && . ~/.bashrc

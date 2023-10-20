@@ -6,9 +6,9 @@
 #start dwm
 dbus-update-activation-environment --all
 xrdb ~/.Xresources
+# exec startxfce4
 exec ~/.local/bin/startdwm
-# exec bspwm
-
+# exec herbstluftwm --locked
 # start plasma
 # export DESKTOP_SESSION=plasma
 # exec startplasma-x11

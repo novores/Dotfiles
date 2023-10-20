@@ -1,18 +1,18 @@
 # Introduction
+
 it's my personal dotfiles with, take what you need!
 
+## https://user-images.githubusercontent.com/71489102/167232838-dfa1b8f0-9697-4b46-bbe3-30329139ce31.mp4
 
-https://user-images.githubusercontent.com/71489102/167232838-dfa1b8f0-9697-4b46-bbe3-30329139ce31.mp4
----
 # Installation
 
 you need 'stow' package for installation. than run:
+
 ```bash
 git clone https://github.com/novores/dotfiles ~/dotfiles && stow ~/dotfiles
 ```
 
 list configs in this repo:
-
 
 ```bash
 ./
@@ -65,6 +65,6 @@ list configs in this repo:
 ├── Xresources-nord
 ├── bashrc
 ├── inputrc
-└── xinitrc* 
+└── xinitrc*
 
 ```

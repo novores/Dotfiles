@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source /usr/bin/liquidprompt
-
 # set default text editor
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -41,15 +39,15 @@ if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
 fi
 
 #color variable
-blk='\[\033[01;30m\]'   # Black
-red='\[\033[01;31m\]'   # Red
-grn='\[\033[01;32m\]'   # Green
-ylw='\[\033[01;33m\]'   # Yellow
-blu='\[\033[01;34m\]'   # Blue
-pur='\[\033[01;35m\]'   # Purple
-cyn='\[\033[01;36m\]'   # Cyan
-wht='\[\033[01;37m\]'   # White
-clr='\[\033[00m\]'      # Reset
+# blk='\[\033[01;30m\]'   # Black
+# red='\[\033[01;31m\]'   # Red
+# grn='\[\033[01;32m\]'   # Green
+# ylw='\[\033[01;33m\]'   # Yellow
+# blu='\[\033[01;34m\]'   # Blue
+# pur='\[\033[01;35m\]'   # Purple
+# cyn='\[\033[01;36m\]'   # Cyan
+# wht='\[\033[01;37m\]'   # White
+# clr='\[\033[00m\]'      # Reset
 
 # FUNCTIONS
 cam(){
@@ -207,3 +205,6 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###}}}
+LOCAL_RCFILE=$HOME/.config/liquidpromptrc
+[ -f "$LOCAL_RCFILE" ] && source "$LOCAL_RCFILE"
+source /usr/bin/liquidprompt
