@@ -66,10 +66,11 @@ mem() {
  wlan() {
   #  #iwd
   # get_ssid=$(iwctl station wlan0 show | awk 'NR==7 {print $3}')
-  get_ssid="$(iwctl station wlan0 show | awk '/network/ {print $3}')"
+  get_ssid="$(iwctl station wlan0 show | awk -v OFS=' ' '/network/ {print $3,$4}')"
+  get_rssi="$(iwctl station wlan0 show | grep '\<RSSI\>' | awk '{print $2}')"
    # get_ssid=$(wpa_cli status | awk NR==4 | cut -c 6-20) #wpa_supplicant
  	case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
-     up) printf "^c$black^^b$yellow^ 󰖩 ^d^%s" "^c$yellow^^b$gray^ $get_ssid ^d^";;
+     up) printf "^c$black^^b$green^ 󰖩 ^d^%s" "^c$yellow^^b$gray^ $get_ssid^c$green^ $get_rssi ^d^";;
      down) printf "^c$black^^b$red^ 󰖪 ^d^%s" "^c$yellow^^b$gray^ Disconnect ^d^" ;;
  	esac
  }
