@@ -1,6 +1,6 @@
 # Introduction
 
-it's my personal dotfiles with, take what you need!
+it's my personal dotfiles, take what you need!
 
 ## https://user-images.githubusercontent.com/71489102/167232838-dfa1b8f0-9697-4b46-bbe3-30329139ce31.mp4
 
