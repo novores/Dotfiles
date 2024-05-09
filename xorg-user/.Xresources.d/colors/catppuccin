@@ -1,5 +1,7 @@
 *background: #1E1E2E
+*background-alt: #313244	 
 *foreground: #CDD6F4
+*foreground-alt: #CDD6F4
 
 ! black
 *color0: #45475A

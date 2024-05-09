@@ -1,7 +1,7 @@
 configuration {
     font:                           "Dejavu Sans 10";
     show-icons:                     true;
-    icon-theme:                     "Gruvbox-Material-Dark";
+    icon-theme:                     "Papirus-Dark";
     display-drun:                   "";
     drun-display-format:            "{name}";
     timeout {
@@ -11,7 +11,7 @@ configuration {
 }
 
 
-@import "gruvbox.rasi"
+@import "catppuccin.rasi"
 
 window {
     transparency:                   "pseudo";
@@ -100,7 +100,5 @@ element.alternate.normal{
     background-color:               @bg;
     text-color:                     @fg;
 }
-
-/* vim:ft=css */
 
 

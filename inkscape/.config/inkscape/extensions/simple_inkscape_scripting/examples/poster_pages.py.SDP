@@ -1,0 +1,42 @@
+###########################################
+# Use Simple Inkscape Scripting to draw a #
+# poster that prints as separate pages.   #
+###########################################
+
+# Construct a 3x2 layout of A5 pages.
+size = canvas.get_size_by_name('A5')
+centers = []
+for y in range(2):
+    for x in range(3):
+        pg = page(y*3 + x + 1, (x*size[0], y*size[1]), size)
+        bbox = pg.bounding_box()
+        centers.append((bbox.center_x, bbox.center_y))
+
+# Create a title page on page 1.
+title = text('Regular', (centers[0][0], centers[0][1] - 24*pt),
+             font_size='48pt', font_family='Impact, sans-serif',
+             font_weight='bold', text_anchor='middle', fill='#217844')
+title.add_text('Polygons', (centers[0][0], centers[0][1] + 24*pt))
+
+# Draw regular polygons on all other pages.
+poly_names = [
+    'Triangle',
+    'Square',
+    'Pentagon',
+    'Hexagon',
+    'Heptagon'
+]
+for sides in range(3, 8):
+    mid = centers[sides - 2]
+    text(poly_names[sides - 3], (mid[0], mid[1] - size[1]/2 + 72*pt),
+         font_size='24pt', font_family='"Gentium Book Basic", serif',
+         text_anchor='middle', fill='#442178')
+    red, grn, blu = randint(128, 255), randint(128, 255), randint(128, 255)
+    regular_polygon(sides, mid, size[0]*0.35,
+                    stroke_width='2pt', stroke='black',
+                    fill='#%02x%02x%02x' % (red, grn, blu))
+
+# Resize the canvas to cover all six pages.
+canvas.true_width = size[0]*3
+canvas.true_height = size[1]*2
+canvas.viewbox = [0, 0, size[0]*3, size[1]*2]

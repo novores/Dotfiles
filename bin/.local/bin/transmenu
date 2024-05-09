@@ -4,7 +4,9 @@
 
 notiduration="10000"
 TITLE="translations results"
-dmenu="dmenu -nb #A6E3A1 -nf #1E1E2E -sb #1E1E2E -sf #A6E3A1"
+# dmenu="dmenu -nb #A6E3A1 -nf #1E1E2E -sb #1E1E2E -sf #A6E3A1"
+dmenu="rofi -dmenu"
+clipboard_cmd="xsel -ob"
 
 text=$(printf 'Paste from clipboard' | $dmenu -p "insert text")
 [ -z "$text" ] && exit 1;
@@ -18,7 +20,7 @@ mkVocab() {
 
 while : ;do
   if [[ $text == "Paste from clipboard" ]]; then 
-    text=$(xsel -ob)
+    text=$($clipboard_cmd)
   fi
   asklang=$(printf "en\nid" | $dmenu -p "choose language")
   [ -z "$asklang" ] && exit 1

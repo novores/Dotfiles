@@ -21,7 +21,7 @@ highlight WildMenu	cterm=bold	ctermfg=015	ctermbg=008
 highlight CmdLine	cterm=none	ctermfg=007	ctermbg=default
 
 highlight Executable	cterm=bold	ctermfg=002	ctermbg=default
-highlight Link		cterm=bold	ctermfg=006	ctermbg=default
+highlight Link		cterm=bold	ctermfg=007	ctermbg=default
 highlight BrokenLink	cterm=bold	ctermfg=001	ctermbg=default
 highlight Device	cterm=bold,standout	ctermfg=000	ctermbg=011
 highlight Fifo		cterm=none	ctermfg=003	ctermbg=default

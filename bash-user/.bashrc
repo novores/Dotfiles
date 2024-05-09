@@ -28,7 +28,6 @@ HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoredups
 HISTSIZE=1000
 HISTFILESIZE=1000
-shopt -s histappend
 
 # generate zoxide
 eval "$(zoxide init bash)"
@@ -141,6 +140,9 @@ alias mkdir='mkdir -p -v'
 alias ll='ls -l'
 alias la='ls -la'
 
+# bash autocompletion like zsh
+# bind 'TAB:menu-complete'
+# bind '"\e[Z":menu-complete-backward'
 
 ###-begin-npm-completion-###{{{
 
@@ -208,3 +210,5 @@ fi
 LOCAL_RCFILE=$HOME/.config/liquidpromptrc
 [ -f "$LOCAL_RCFILE" ] && source "$LOCAL_RCFILE"
 source /usr/bin/liquidprompt
+
+source /home/novores/.config/broot/launcher/bash/br

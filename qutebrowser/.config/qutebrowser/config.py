@@ -1,8 +1,28 @@
+import os
+from urllib.request import urlopen
+
+# load your autoconfig, use this, if the rest of your config is empty!
+config.load_autoconfig()
+
+if not os.path.exists(config.configdir / "theme.py"):
+    theme = "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py"
+    with urlopen(theme) as themehtml:
+        with open(config.configdir / "theme.py", "a") as file:
+            file.writelines(themehtml.read().decode("utf-8"))
+
+if os.path.exists(config.configdir / "theme.py"):
+    import theme
+    theme.setup(c, 'mocha', True)
 config.load_autoconfig()
 
 # source
-
+# c.url.searchengines = { 'DEFAULT': 'https://apps.disroot.org/?q={}' }
 # key binding
+c.fileselect.handler = 'external'
+c.fileselect.folder.command = ["alacritty", "-e", "vifm", "--choose-dir", "{}"]
+c.fileselect.multiple_files.command = ["alacritty", "-e", "vifm", "--choose-files", "{}"]
+c.fileselect.single_file.command = ["alacritty", "-e", "vifm", "--choose-files", "{}"]
+
 # config.bind('<Alt-Shift-u>', 'spawn --userscript qute-keepassxc --key 4C40A8C5', mode='insert')
 # config.bind('pw', 'spawn --userscript qute-keepassxc --key 4C40A8C5', mode='normal')
 # config.bind('pt', 'spawn --userscript qute-keepassxc --key 4C40A8C5 --totp', mode='normal')

@@ -24,7 +24,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = (0,450)
+    width = (200,300)
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -33,7 +33,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 10x33
+    offset = 10x30
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -59,6 +59,7 @@
 
     # Set the maximum width for the progress bar
     progress_bar_max_width = 300
+    progress_bar_corner_radius = 5
 
 
     # Show how many messages are currently hidden (because of
@@ -87,11 +88,11 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 1
+    frame_width = 2
 
     # Defines color of the frame around the notification window.
     frame_color = "#89B4FA"
-
+    
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
@@ -118,7 +119,7 @@
 
     ### Text ###
 
-    font = SFmono 10
+    font = JetBrainsMono NF 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -158,11 +159,11 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<span size='x-large' font_desc='JetBrains Mono 7' weight='bold' foreground='#fabd2f'>%s</span>\n%b"
+    format = "<b>%s</b>%n\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = center 
+    alignment = left
 
     # Vertical alignment of message text and icon.
     # Possible values are "top", "center" and "bottom".
@@ -196,7 +197,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = gruvbox-dark-icons-gtk
+    icon_theme = Papirus-Dark
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
@@ -305,17 +306,17 @@
     per_monitor_dpi = false
     
 [urgency_low]
-background = "#1E1E2E"
-foreground = "#CDD6F4"
+background = "#313244"
+foreground = "#cdd6f4	"
 
 [urgency_normal]
-background = "#1E1E2E"
+background = "#313244"
 foreground = "#CDD6F4"
 
 [urgency_critical]
-background = "#1E1E2E"
+background = "#313244"
 foreground = "#CDD6F4"
-frame_color = "#FAB387"
+frame_color = "#f38ba8"
 
 # [urgency_low]
 #     # IMPORTANT: colors have to be defined in quotation marks.

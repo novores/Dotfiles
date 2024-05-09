@@ -1,6 +1,6 @@
 # Introduction
 
-it's my personal dotfiles with, take what you need!
+bspwm dotfiles, take what you need!
 
 ## https://user-images.githubusercontent.com/71489102/167232838-dfa1b8f0-9697-4b46-bbe3-30329139ce31.mp4
 
@@ -12,7 +12,7 @@ you need 'stow' package for installation. than run:
 git clone https://github.com/novores/dotfiles ~/dotfiles && stow ~/dotfiles
 ```
 
-list configs in this repo:
+list of configs in this repo:
 
 ```bash
 ./

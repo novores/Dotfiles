@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <name>Simple Inkscape Scripting</name>
+  <id>org.pakin.filter.simple_inkscape_scripting</id>
+  <param name="tab" type="notebook">
+    <page name="Code" gui-text="Code">
+      <param type="path" name="py-source" mode="file"
+             gui-text="Python file"
+             gui-description="Filename of a Python script to execute" />
+      <hbox>
+        <spacer size="expand" />
+        <label>– and/or –</label>
+        <spacer size="expand" />
+      </hbox>
+      <param name="program" type="string" appearance="multiline"
+             gui-text="Python code"
+             gui-description="Text of a Python script to execute" />
+      <param name="encoding" type="optiongroup" appearance="combo"
+             gui-text="Input encoding"
+             gui-description="Character encoding for the input text">
+        <option value="">Default</option>
+        <option value="utf-8">UTF-8</option>
+        <option value="utf-16">UTF-16</option>
+        <option value="cp1252">Windows-1252</option>
+      </param>
+    </page>
+
+    <page name="About" gui-text="About">
+      <label>
+        This extension makes it easy to automate Inkscape object
+        creation via small Python scripts.  See
+      </label>
+      <label appearance="url">https://github.com/spakin/SimpInkScr</label>
+      <label>
+        for documentation and examples.
+      </label>
+      <spacer size="10" />
+      <label>
+        Author: Scott Pakin &lt;scott-ink@pakin.org&gt;
+      </label>
+    </page>
+  </param>
+
+  <effect needs-live-preview="false">
+    <object-type>all</object-type>
+    <effects-menu>
+      <submenu name="Render" />
+    </effects-menu>
+  </effect>
+  <script>
+    <command location="inx" interpreter="python">simpinkscr/simple_inkscape_scripting.py</command>
+  </script>
+</inkscape-extension>

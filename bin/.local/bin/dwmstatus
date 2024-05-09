@@ -22,7 +22,7 @@ black=#1e1e2e
 darkblack=#11111b
 gray=#313244
 green=#a6e3a1
-white=#cdd6f4
+white=#f8f8f2
 blue=#94e2d5
 darkblue=#89b4fa
 red=#f38ba8
@@ -37,41 +37,74 @@ case "$COMMAND" in
  "00001000"|"00001001") LAYOUT="ar" ;;
   *) LAYOUT="??" ;;
 esac
-printf "^c$gray^^b$yellow^ 󰘚 ^d^%s" "^c$yellow^^b$gray^ $LAYOUT ^d^"
+printf "^c$yellow^ 󰘚 ^c$white^$LAYOUT^d^"
 }
 
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
-  printf "^c$gray^^b$yellow^ 󰘚 ^d^%s" "^c$yellow^^b$gray^ $cpu_val ^d^"
+  printf "^c$yellow^ 󰘚 ^c$white^$cpu_val^d^"
 }
 
 battery() {
    battery_level=`acpi -b | grep -P -o '\d+(?=%)'`
   case "$(cat /sys/class/power_supply/AC/online)" in 
-    1) printf "^b$green^^c$black^  ^d^%s" "^c$yellow^^b$gray^ $battery_level% ^d^";;
-    0) printf "^b$yellow^^c$black^ 󰂂 ^d^%s" "^c$yellow^^b$gray^ $battery_level% ^d^";;
+    1) printf "^c$green^  ^c$white^$battery_level ^d^";;
+    0) 
+      case $((
+        ($battery_level >= 0 && $battery_level < 20) * 1 +
+        ($battery_level >= 20 && $battery_level < 30) * 2 +
+        ($battery_level >= 30 && $battery_level < 40) * 3 +
+        ($battery_level >= 40 && $battery_level < 50) * 4 +
+        ($battery_level >= 50 && $battery_level < 60) * 5 +
+        ($battery_level >= 60 && $battery_level < 70) * 6 +
+        ($battery_level >= 80 && $battery_level < 90) * 7 +
+        ($battery_level >= 90 && $battery_level <= 100) * 8 
+        )) in
+        (1) printf "^c$red^ 󰂃 ^c$white^$battery_level ^d^";;
+        (2) printf "^c$yellow^ 󰁼 ^c$white^$battery_level ^d^";;
+        (3) printf "^c$yellow^ 󰁽 ^c$white^$battery_level ^d^";;
+        (4) printf "^c$yellow^ 󰁾 ^c$white^$battery_level ^d^";;
+        (5) printf "^c$green^ 󰁿 ^c$white^$battery_level ^d^";;
+        (6) printf "^c$green^ 󰂀 ^c$white^$battery_level ^d^";;
+        (7) printf "^c$green^ 󰂁 ^c$white^$battery_level ^d^";;
+        (8) printf "^c$green^ 󰂂 ^c$white^$battery_level ^d^";;
+      esac;;
   esac
 }
 
 brightness() {
   get_brightness=$(xbacklight -get | cut -d '.' -f 1)
-  printf "^b$yellow^^c$black^  ^d^%s" "^c$yellow^^b$gray^ $get_brightness% ^d^"
+  printf "^c$yellow^  ^c$white^$get_brightness ^d^"
 }
 
 mem() {
   get_mem=$(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)
-  printf "^b$yellow^^c$black^ 󰍛 ^d^%s" "^c$yellow^^b$gray^ $get_mem ^d^"
+  printf "^c$yellow^ 󰍛 ^d^^c$white^$get_mem^d^"
 }
 
  wlan() {
   #  #iwd
   # get_ssid=$(iwctl station wlan0 show | awk 'NR==7 {print $3}')
-  get_ssid="$(iwctl station wlan0 show | awk -v OFS=' ' '/network/ {print $3,$4}')"
+  dot=".."
+  get_ssid="$(iwctl station wlan0 show | awk -v OFS=' ' '/network/ {print $3,$4}'| cut -c 1-8)"
   get_rssi="$(iwctl station wlan0 show | grep '\<RSSI\>' | awk '{print $2}')"
    # get_ssid=$(wpa_cli status | awk NR==4 | cut -c 6-20) #wpa_supplicant
  	case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
-     up) printf "^c$black^^b$green^ 󰖩 ^d^%s" "^c$yellow^^b$gray^ $get_ssid^c$green^ $get_rssi ^d^";;
-     down) printf "^c$black^^b$red^ 󰖪 ^d^%s" "^c$yellow^^b$gray^ Disconnect ^d^" ;;
+     up) 
+        case $((
+          ($get_rssi <= 0 && $get_rssi >= -30)   * 1 +
+          ($get_rssi < -30 && $get_rssi >= -67)  * 2 +
+          ($get_rssi < -67 && $get_rssi >= -70) * 3 +
+          ($get_rssi < -70 && $get_rssi >= -90) * 4 +
+          ($get_rssi <= -90 ) * 5
+          )) in
+          (1) printf   "%s^c$green^ 󰤨 ^c$white^$get_ssid^c$green^^d^" ;;
+          (2) printf   "%s^c$green^ 󰤥 ^c$white^$get_ssid^c$green^^d^" ;;
+          (3) printf   "%s^c$green^ 󰤢 ^c$white^$get_ssid^c$green^^d^" ;;
+          (4) printf   "%s^c$yellow^ 󰤟 ^c$white^$get_ssid^c$green^^d^" ;;
+          (5) printf   "%s^c$red^ 󰤯 ^c$white^$get_ssid^c$green^^d^" ;;
+        esac;;
+     down) printf  "%s^c$red^ 󰖪 ^d^" ;;
  	esac
  }
 
@@ -84,9 +117,16 @@ volume() {
   state=$(pamixer --get-mute)
 
   if [ "$state" = "true" ] || [ "$vol" -eq 0 ]; then
-    printf "^c$black^^b$red^ 󰝟 ^d^%s" "^c$yellow^^b$gray^ mute ^d^"
+    printf "^c$red^ 󰝟 ^c$white^mute^d^"
   else
-    printf "^c$black^^b$yellow^ 󰕾 ^d^%s" "^c$yellow^^b$gray^ $vol% ^d^"
+      case $((
+        (vol >= 0 && vol <= 30)   * 1 +
+        (vol > 30 && vol <= 60)  * 2 +
+        (vol > 60 && vol <= 100) * 3 )) in
+        (1) printf "^c$green^ 󰕿 ^c$white^$vol^d^";;
+        (2) printf "^c$yellow^ 󰖀 ^c$white^$vol^d^";;
+        (3) printf "^c$red^ 󰕾 ^c$white^$vol^d^";;
+      esac
   fi
 }
 
@@ -95,9 +135,9 @@ mpd() {
   get_artist=$(mpc -f "%artist%"| awk NR==1 | cut -c 1-30)
   get_title=$(mpc -f "%title%"| awk NR==1 | cut -c 1-30)
     case "$(mpc status -f %state% | awk NR==2 | cut -c-9)" in
-      "[playing]") printf "^b$yellow^^c$black^ MPD ^b$gray^^c$yellow^  ^d^%s" "^b$gray^^c$blue^$get_artist^c$yellow^ $get_title ^d^" 
+      "[playing]") printf "^b$green^^c$black^ MPD ^b$gray^^c$yellow^  ^d^%s" "^b$gray^^c$blue^$get_artist^c$yellow^ $get_title ^d^" 
       ;;
-      "[paused] ") printf "^b$green^^c$black^ MPD ^b$gray^^c$yellow^  ^d^%s" "^b$gray^^c$blue^$get_artist^c$yellow^ $get_title ^d^" 
+      "[paused] ") printf "^b$yellow^^c$black^ MPD ^b$gray^^c$yellow^  ^d^%s" "^b$gray^^c$blue^$get_artist^c$yellow^ $get_title ^d^" 
       ;;
       *) printf " ^b$yellow^^c$black^ MPD ^d^%s" "^b$gray^ Stopped ^d^" 
       ;;
@@ -108,15 +148,16 @@ mpd() {
 }
 
 pomo() {
-  if p | grep -q "Most recent";then
-     printf "^c$gray^^b$yellow^  ^d^%s" "^c$yellow^^b$gray^ Off ^d^" 
- else
-     printf "^c$gray^^b$yellow^  ^d^%s" "^c$yellow^^b$gray^$(p)^d^"
+  status=$(p clock |cut -c 3-)
+  if [ $(p clock | cut -c 3-) = "--:--" ] ; then
+     printf "^c$red^  ^c$yellow^Off^d^"
+  else
+     printf "^c$green^  ^c$white^$status^d^"
   fi
 }
 
 while true; do
-  sleep 1 && xsetroot -name "$(lang) $(mpd) $(volume) $(brightness) $(cpu) $(mem) $(wlan) $(battery) $(clock)"
+  sleep 1 && xsetroot -name "$(mpd) $(pomo) $(lang) $(volume) $(brightness) $(cpu) $(mem) $(wlan) $(battery) $(clock)"
 done
 
 # vim:ft=bash

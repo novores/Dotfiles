@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2145
+set -euo pipefail
+IFS=$'\n\t'
+normal=$'\e[0m'
+bold=$'\e[1m'
+dimmed=$'\e[2m'
+red=$'\e[31m'
+green=$'\e[92m'
+cyan=$'\e[96m'
+
+log() {
+  echo "$@" 1>&2
+}
+
+info() {
+  log "${dimmed}==> $@${normal}"
+}
+
+success() {
+  log "${cyan}✓ $@${normal}"
+}
+
+throw() {
+  log " ${red}Error: $@${normal}"
+  exit 1
+}
+
+yn() {
+  # shellcheck disable=SC2064
+  trap "echo $normal" SIGINT
+  read -r -n 1 -p "${green}${bold}?${normal} $1 [y/n]: ${cyan}${bold}" yn
+  echo "${normal}"
+  trap - SIGINT
+  if [[ "$yn" != [Yy]* ]]; then
+    return 1
+  fi
+}
+
+# ==========================
+# Install icsp
+# ==========================
+REPO_ZIP_DOWNLOAD_URL="https://github.com/loteoo/icsp/archive/refs/heads/main.zip"
+BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
+SCRIPT_NAME="icsp"
+INSTALL_PATH="$BIN_HOME/$SCRIPT_NAME-main"
+SCRIPT_FILE_PATH="$INSTALL_PATH/$SCRIPT_NAME"
+SYMLINK_PATH="$BIN_HOME/$SCRIPT_NAME"
+
+
+## Validation steps
+## ==================
+
+# Validate dependencies
+for dependency in curl unzip awk date sed tr; do
+  if ! command -v $dependency &> /dev/null; then
+    throw "\"$dependency\" command is not available. Installation aborted."
+  fi
+done
+
+# Warn reinstall if already installed
+if  [[ -f "$SYMLINK_PATH" || -d "$INSTALL_PATH" || -n "$(which $SCRIPT_NAME)" ]]; then
+  if ! yn "$SCRIPT_NAME already exists. Uninstall before reinstall?"; then
+    throw "Installation aborted."
+  fi
+  if [[ -f "$SYMLINK_PATH" ]]; then
+    info "Remove symlink..."
+    rm "$SYMLINK_PATH"
+  fi
+  if [[ -d "$INSTALL_PATH" ]]; then
+    info "Remove script files..."
+    rm -r "$INSTALL_PATH"
+  fi
+  if [[ -n "$(which $SCRIPT_NAME)" ]]; then
+    info "Remove previous installation..."
+    rm "$(which $SCRIPT_NAME)"
+  fi
+  success "Uninstalled $SCRIPT_NAME."
+fi
+
+# Confirm install
+if ! yn "Install $SCRIPT_NAME?"; then
+  throw "Installation aborted."
+fi
+
+# Create bin directory if needed.
+if [[ ! -d "$BIN_HOME" ]]; then
+  if ! yn "Create \"$BIN_HOME\" directory?"; then
+    throw "Installation aborted."
+  fi
+
+  info "Create \"$BIN_HOME\"..."
+  mkdir -p "$BIN_HOME"
+
+  # Add to bin directory to $PATH if needed.
+  if ! echo "$PATH" | tr ':' $'\n' | grep -q "$BIN_HOME"; then
+    profile_file=".bashrc"
+    if [[ -f "$HOME/.zshrc" ]]; then
+      profile_file=".zshrc"
+    fi
+    if ! yn "\"$BIN_HOME\" is not in \$PATH. Add to path via $profile_file?"; then
+      throw "Installation aborted."
+    fi
+    bash -c "echo 'export PATH=\$PATH:$BIN_HOME' >> $HOME/$profile_file"
+    info "\"$BIN_HOME\" was added to \$PATH. Shell session restart required."
+  fi
+  success "Created \"$BIN_HOME\" directory."
+fi
+
+
+## Install steps
+## ==================
+
+info "Downloading $REPO_ZIP_DOWNLOAD_URL..."
+curl -fsSL "$REPO_ZIP_DOWNLOAD_URL" -o "$INSTALL_PATH.zip"
+
+info "Unpacking to $INSTALL_PATH..."
+unzip -q "$INSTALL_PATH.zip" -d "$BIN_HOME"
+
+info "Delete archive..."
+rm "$INSTALL_PATH.zip"
+
+info "Make script executable..."
+chmod +x "$SCRIPT_FILE_PATH"
+
+info "Create symbolic link at $SYMLINK_PATH..."
+ln -s "$SCRIPT_FILE_PATH" "$SYMLINK_PATH"
+
+
+## Post-install
+## ==================
+
+success "$SCRIPT_NAME installed! 🎉"
+log "Give $SCRIPT_NAME it a star on Github if you like it! 🙏"
+
+if [[ -z "$(which "$SCRIPT_NAME")" ]]; then
+  log "Please restart your terminal to make $SCRIPT_NAME available."
+  exit
+fi
+
+info "Running \"$SCRIPT_NAME -h\"..."
+eval "$SCRIPT_NAME -h"

@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+# Simple script to interact with (some part of) rbw (github.com/doy/rbw) from dmenu
+#  mintezpresso
+
+# Edit your terminal of choice here for the edit function
+TERM="st -e"
+
+# How long the password noti will last for option 3
+# 1 second = 1000
+notiduration="10000"
+dmenu="fuzzel --dmenu"
+clipboard_cmd="wl-copy"
+
+[ ! -f "$HOME/.config/rbw/config.json" ] && notify-send -i bitwarden -t 15000 "You haven't configured rbw yet" "Run \"rbw config set email your_bit_warden_login_email\" from terminal to config. Once that's done, start rbwmenu again" && exit 1
+
+entry=$(rbw list --fields name,user | tr '\t' ' ' | $dmenu -p "Select password: ")
+[ -z "$entry" ] && exit 1
+
+# Only functions here. scroll down for script operation
+editentry () { notify-send -i bitwarden -t 5000 "Please read instruction carefully before saving new passowrd" && $TERM rbw edit $entry && exit ;}
+
+getpass=$(rbw get --field password $entry)
+
+getlogin=$(rbw ls --fields name,user | tr '\t' ' ' | grep "$entry" | awk '{print $2}')
+
+nologinandpass () { notify-send -i bitwarden -5000 "Both username and password are empty" "Consider adding them maybe \?" && exit 1 ;}
+
+nologin () { printf "%s" "$getpass" | $clipboard_cmd\
+    && notify-send -i bitwarden -t 5000 "No username found for \"$entry\"" "Password copied to clipboard" && exit
+}
+
+nopass () { printf "%s" "$getlogin" | $clipboard_cmd\
+    && notify-send -i bitwarden -t 5000 "No password found for \"$entry\"" "Username copied to clipboard" && exit
+}
+
+haveloginandpass () {
+    printf "%s" "$getlogin" | $clipboard_cmd; sleep 10; wl-copy --clear
+    clickme=$(notify-send -i bitwarden -t "$notiduration" --action="default,Reply" "Username copied to clipboard" "Click this to copy password to clipboard\n\n<b>This notification will last for "$((notiduration/1000))" seconds</b>")
+    [ "$clickme" = "1" ] && exit 1
+    [ "$clickme" = "2" ] && printf "%s" "$getpass" | $clipboard_cmd
+    exit
+}
+
+deleteentry () { confirm=$(printf "Yes\nNo" | $dmenu  -p "Confirm deleting \"$entry\" ?")
+    [ -z "$confirm" ] && exit 1
+    [ "$confirm" = "No" ] && exit 1
+    if [ "$confirm" = "Yes" ];then
+      rbw delete "$entry" && notify-send -i bitwarden "Success" "Entry \"$entry\" deleted"
+      else 
+        notify-send -i bitwarden "Failed" "Entry \"$entry\" not deleted"
+    fi
+}
+
+while : ; do
+    askaction=$( printf "1. Password\n2. Username\n3. Both\n4. Edit\n5. Delete" | $dmenu  -p "For \"$entry\", what to do ?" )
+    [ -z "$askaction" ] && exit 1
+    case $askaction in
+
+        "1. Password" ) # print password to clipboard
+            [ -z "$getpass" ] && notify-send -i bitwarden -t 3000 "rbwmenu" "Entry for <b>\"$entry\"</b> had no password" && exit
+            printf "%s" "$getpass" | $clipboard_cmd && notify-send -i bitwarden  "Password for \"$entry\"" "has been copied to clipboard" && exit ;;
+
+        "2. Username" ) # print username to clipboard
+            [ -z "$getlogin" ] && notify-send -i bitwarden -t 3000 "rbwmenu" "Entry for <b>\"$entry\"</b> had no username" && exit 1
+            printf "%s" "$getlogin" | $clipboard_cmd && notify-send -i bitwarden "Username for \"$entry\"" "has been copied to clipboard" && exit ;;
+        "3. Both" )
+            [ ! "$getpass" ] && [ ! "$getlogin" ] && nologinandpass
+            [ "$getpass" ] && [ ! "$getlogin" ] && nologin
+            [ ! "$getpass" ] && [ "$getlogin" ] && nopass
+            [ "$getpass" ] && [ "$getlogin" ] && haveloginandpass ;;
+
+        "4. Edit" ) editentry ;;
+        "5. Delete" ) deleteentry ;;
+
+        * ) notify-send -i bitwarden -t 5000 "Invalid option. Try again" "And choose a valid one this time"
+    esac
+    sleep 10; rbw lock
+done

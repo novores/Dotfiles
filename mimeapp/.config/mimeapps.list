@@ -33,6 +33,15 @@ x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
+application/vnd.oasis.opendocument.spreadsheet=libreoffice-writer.desktop
+x-scheme-handler/chrome=org.qutebrowser.qutebrowser.desktop
+application/x-extension-htm=org.qutebrowser.qutebrowser.desktop
+application/x-extension-html=org.qutebrowser.qutebrowser.desktop
+application/x-extension-shtml=org.qutebrowser.qutebrowser.desktop
+application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
+application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop
+application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-SFM190.desktop;userapp-Telegram Desktop-J4L1G1.desktop;
@@ -46,4 +55,14 @@ application/rss+xml=userapp-Thunderbird-7AWH51.desktop;
 application/x-extension-rss=userapp-Thunderbird-7AWH51.desktop;
 x-scheme-handler/webcal=userapp-Thunderbird-7YBD51.desktop;
 x-scheme-handler/webcals=userapp-Thunderbird-7YBD51.desktop;
-
+image/wmf=libreoffice-draw.desktop;
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/chrome=org.qutebrowser.qutebrowser.desktop;
+text/html=org.qutebrowser.qutebrowser.desktop;
+application/x-extension-htm=org.qutebrowser.qutebrowser.desktop;
+application/x-extension-html=org.qutebrowser.qutebrowser.desktop;
+application/x-extension-shtml=org.qutebrowser.qutebrowser.desktop;
+application/xhtml+xml=org.qutebrowser.qutebrowser.desktop;
+application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop;
+application/x-extension-xht=org.qutebrowser.qutebrowser.desktop;

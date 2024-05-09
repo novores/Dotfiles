@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 #  ┏━┓╻ ╻╻ ╻╻┏ ╺┳┓
 #  ┗━┓┏╋┛┣━┫┣┻┓ ┃┃
 #  ┗━┛╹ ╹╹ ╹╹ ╹╺┻┛
@@ -7,10 +7,10 @@
 
 # terminal emulator
 super + Return
-  st
+  alacritty
    # $HOME/.local/bin/urxvtdc 
 #rofi menus
-super + d
+super + p
     rofi -show drun	
 super + F8
 
@@ -30,11 +30,14 @@ super + Print
 
 #shortcut
 super + F1
-   rofi-rbw
+   rbwmenu
 
 super + F2
 	transmenu
 
+super + F3
+	rofimoji
+  
 super + r
   redshift -P	
 #}}}
@@ -52,21 +55,18 @@ XF86AudioPlay
 
 # {{{mpd control
 alt + m
-    mpd && dunstify "mpd" "online"
-
-alt + shift + m
-    pkill mpd  && dunstify "mpd" "offline"
+    [[ $(pgrep mpd) ]] && pkill mpd || mpd
     #}}}
     
 #{{{Audio
 XF86AudioRaiseVolume
-    pamixer -i 2; paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+    pamixer -i 2; paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga && pamixer --get-volume | progress-notify.sh audio
     
 XF86AudioLowerVolume
-    pamixer -d 2; paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga 
+    pamixer -d 2; paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga && pamixer --get-volume | progress-notify.sh audio
 
 XF86AudioMute
-    pamixer -t && notify-send -t 300  "mute"
+    pamixer -t | progress-notify.sh muted
     #}}}
 
 #{{{LockScreen
@@ -76,10 +76,10 @@ XF86ScreenSaver
 
 #{{{Light
 XF86MonBrightnessUp
-    xbacklight -inc 1
+    xbacklight -inc 1 && xbacklight -get | progress-notify.sh brightness
 
 XF86MonBrightnessDown
-    xbacklight -dec 1
+    xbacklight -dec 1 && xbacklight -get | progress-notify.sh brightness
 #}}}
 
 # {{{bspwm hotkeys
@@ -155,6 +155,9 @@ super + {_,shift + }{1-9,0}
 super + {_,shift + } Tab
     bspc node -f {next,prev}.local
     #}}}
+
+super + {w,e}
+  bspc monitor -f {prev, next}
     
 # {{{preselect
 

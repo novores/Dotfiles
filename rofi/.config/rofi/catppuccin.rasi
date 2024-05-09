@@ -1,0 +1,23 @@
+/* colors */
+
+* {
+  bg:    #1E1E2E;
+  bg1:   #313244;
+  bg2:   #504945;
+  bg3:   #665c54;
+  bg4:   #7c6f64;
+  bg5:   #928374;
+  fg:    #CDD6F4;
+  yellow-dark: #F9E2AF;
+  yellow:      #F9E2AF;
+  blue-dark:   #458588;
+  blue:        #89B4FA;
+  green-dark:  #A6E3A1;
+  green:       #A6E3A1;
+  red-dark:    #cc241d;
+  red:         #fb4934;
+  magenta-dark:#F5C2E7;
+  magenta:     #F5C2E7;
+}
+
+/* vim:ft=css */

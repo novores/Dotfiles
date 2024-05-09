@@ -70,11 +70,10 @@ mark r /
 mark h ~/
 mark u /run/media/novores
 mark v ~/Videos/
-mark D ~/Dotfiles/
+mark D ~/dotfiles/
 mark c ~/.config/
 mark d ~/Downloads/
 mark l ~/.local/
-mark n ~/Nextcloud/
 
 " ------------------------------------------------------------------------------
 
@@ -96,6 +95,8 @@ command! zip zip -r %c.zip %f
 command! gzip gzip -v %f
 command! gunzip gunzip -v %f
 command! unzip unzip %f
+command! zx 7z x %f
+command! zc 7z c %f
 command! unrar unrar x %f
 command! run !! ./%f
 command! make !!make %a
@@ -106,6 +107,7 @@ command! tarc tar czvf %c.tar.gz %f
 command! tarx tar xvf %f
 command! decrypt gpg --decrypt-files %f
 command! encrypt gpg --encrypt %f
+command! cpimg xclip -sel clip -t image/jpeg %f
 
 " ------------------------------------------------------------------------------
 
@@ -167,7 +169,7 @@ filextype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
           \ {Play using MPlayer}
           \ mplayer %f,
 fileviewer {*.mp3,*.m4a},<audio/mpeg> mediainfo %c | head -20 2>&1 
-fileviewer {*.flac},<audio/flac> soxi
+" fileviewer {*.flac},<audio/flac> soxi
 
 " Video
 filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
@@ -186,14 +188,24 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \<video/*>
          \ mediainfo %c| head -20  2>&1 
 
-" Web
+" text 
 filextype {*.html,*.htm},<text/html>
         \ {Open with nvim}
         \ nvim %f,
         \ {Open with qutebrowser}
         \ qutebrowser %f &,
 filetype {*.html,*.htm},<text/html> links, lynx
-fileviewer * .html \ nvim %c
+fileviewer <text/*> bat --color always --wrap never --pager never %c -p 
+
+"json
+fileviewer {*.json} cat %c | jq -C
+
+"fonts
+filextype {*.ttf,*.otf}
+      \ {Open with display}
+      \ display %f
+fileviewer {*.ttf,*.otf} 
+      \ file %c
 
 " Object
 filetype {*.o},<application/x-object> nm %f | less
@@ -213,13 +225,6 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
       \ viu -w 60 %f,
       \ identify %f
-" SVG
-filextype *.svg,
-      \ {view in inkview}
-      \ inkview %f,
-fileviewer *.svg
-      \ viu %f
-
 " OpenRaster
 filextype *.ora
         \ {Edit in MyPaint}
@@ -268,7 +273,7 @@ filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
        \ zip -sf %c | less,
        \ {Extract here}
        \ tar -xf %c,
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zipinfo %c
 
 " ArchiveMount
 filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},
@@ -309,16 +314,17 @@ filetype {*.7z},<application/x-7z-compressed>
 fileviewer {*.7z},<application/x-7z-compressed> 7z l %c
 
 " Office files
-filextype {*.csv,*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
+filextype {*.csv,*.odt,*.doc,*.docx,*.ods,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
          \<application/vnd.openxmlformats-officedocument.*,
           \application/msword,
           \application/vnd.ms-excel>
         \ libreoffice %f &
-fileviewer {*.doc},<application/msword> catdoc %c
+" fileviewer {*.doc},<application/msword> catdoc %c
 fileviewer {*.docx},
           \<application/
            \vnd.openxmlformats-officedocument.wordprocessingml.document>
-         \ docx2txt.pl %f -
+         \ docx2txt %f -
+" fileviewer {*.odt,*.ods,*.odg,*.odp,*.odb,*.xls,*.xlsx,*.pptx,*.ppt} file %c
 
 " TuDu files
 filetype *.tudu tudu -f %c
@@ -483,6 +489,7 @@ nnoremap K 5k
 "     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
 "
 " let $VIFM_SERVER_NAME = v:servername
+
  " fileviewer *.pdf
  "        \ vifmimg pdf %px %py %pw %ph %c
  "        \ %pc
@@ -516,8 +523,7 @@ nnoremap K 5k
  "    fileviewer <font/*>
  "        \ vifmimg font %px %py %pw %ph %c
  "        \ %pc
- "        \ vifmimg clear
-    
+ "        \ vifmimg clear    
 " file types
 set classify='󰉋 :dir:/, :exe:,󱁻 :reg:, :link:'
 " Dir
