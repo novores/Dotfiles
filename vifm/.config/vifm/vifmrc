@@ -216,12 +216,12 @@ fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
 
 " Images
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+        \ {View in swayimg}
+        \ swayimg %c,
+        \ {View in viewnior}
+        \ viewnior %c,
         \ {view in feh}
         \ feh -GFdZ --draw-tinted %d --start-at %d/%c 2>/dev/null,
-        \ {View in sxiv}
-        \ sxiv %f,
-        \ {View in gpicview}
-        \ gpicview %c,
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
       \ viu -w 60 %f,
       \ identify %f
@@ -429,6 +429,15 @@ elseif executable('xsel')
     nnoremap yf :!echo -n %c:p | xsel --input --primary %i &&
                 \ echo -n %c:p | xsel --clipboard --input %i<cr>
 endif
+
+    " Yank current directory path into the clipboard
+    nnoremap yd :!echo -n %d | wl-copy<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+    " Yank current file path into the clipboard
+    nnoremap yf :!echo -n %c:p | wl-copy<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+    " yank current filename without path into the clipboard
+    nnoremap yn :!echo -n %c | wl-copy<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+    " yank root of current file's name into the clipboard
+    nnoremap yr :!echo -n %c:r | wl-copy<cr>:echo expand('%"c:r') "is yanked to clipboard"<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>

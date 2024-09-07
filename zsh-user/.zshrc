@@ -93,6 +93,8 @@ fi
 
 # ALIASES
 alias nchat="TERM=xterm-256color nchat"
+alias yt="ytfzf"
+alias tgpt="tgpt --provider duckduckgo"
 # alias vifm="vifmrun"
 alias blue="bluetoothctl"
 alias N='sudo -E nnn -dH'
@@ -122,11 +124,16 @@ alias mkdir='mkdir -p -v'
 alias ll='ls -l'
 alias la='ls -la'
 
-# start antigen
-source /home/novores/antigen.zsh
+# Created by Zap installer
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+plug "zsh-users/zsh-autosuggestions"
+plug "nojhan/liquidprompt"
+plug "zap-zsh/supercharge"
+plug "zap-zsh/zap-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
 
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/completions
-antigen bundle nojhan/liquidprompt
+# Load and initialise completion system
+autoload -Uz compinit
+compinit
 
-antigen apply
+source /home/novores/.config/broot/launcher/bash/br

@@ -7,13 +7,13 @@
 #start dwm
 dbus-update-activation-environment --all
 xrdb ~/.Xresources
-# exec ~/.local/bin/startdwm
+exec ~/.local/bin/startdwm
 # wmname "LG3D"
 
 # exec awesome >/tmp/awesomewm-log 2>&1
 # exec startxfce4
 # # exec ~/.config/chadwm/scripts/run.sh
-exec bspwm
+# exec bspwm
 #
 # ## start budgie
 # # export XDG_CURRENT_DESKTOP=Budgie:GNOME

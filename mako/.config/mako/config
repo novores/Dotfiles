@@ -4,10 +4,21 @@ background-color=#1e1e2e
 text-color=#cdd6f4
 border-color=#89b4fa
 progress-color=over #313244
-border-radius=15
+border-radius=5
 icon-path=/usr/share/icons/Papirus-Dark
 default-timeout=5000
+icons=1
+layer=overlay
+
+on-button-left=dismiss
+on-button-middle=none
+on-button-right=dismiss-all
+on-touch=dismiss
+on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/message.oga
+
+# on-button-left=exec fuzzel
 
 [urgency=high]
 border-color=#fab387
+
 

@@ -15,6 +15,6 @@ fileext = ".ics"
 
 [storage calendars_dav]
 type = "caldav"
-url = "https://cloud.disroot.org/"
-username.fetch = ["shell", "rbw list --fields name,user | grep Disroot | cut -f 2"]
-password.fetch = ["shell", "rbw get Disroot"] 
+url = "https://sync.infomaniak.com"
+username.fetch = ["shell", "rbw list --fields name,user | grep NH | cut -f 2"]
+password.fetch = ["shell", "rbw get dav"] 

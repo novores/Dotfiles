@@ -4,7 +4,7 @@
 
 notiduration="10000"
 TITLE="translations results"
-dmenu="fuzzel --dmenu"
+dmenu="rofi -dmenu -sync"
 clip_cmd=$(wl-paste)
 
 text=$(printf 'Paste from clipboard' | $dmenu -p "insert text: ")

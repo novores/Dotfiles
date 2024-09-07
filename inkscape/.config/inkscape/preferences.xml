@@ -29,7 +29,7 @@
        state="1" />
     <group
        id="scrollbars"
-       state="1" />
+       state="0" />
   </group>
   <group
      id="fullscreen"
@@ -119,8 +119,8 @@
          id="rect"
          style="fill:blue;"
          usecurrent="1"
-         width="1080"
-         height="1350"
+         width="3622.07023560536"
+         height="1564.20894592805"
          ry="0" />
       <eventcontext
          id="3dbox"
@@ -157,8 +157,9 @@
          end="0"
          start="0"
          usecurrent="1"
-         rx="154.404701169667"
-         ry="154.404701169669" />
+         rx="151.204704224596"
+         ry="151.204704224632"
+         arc_type="0" />
       <eventcontext
          id="star"
          magnitude="3"
@@ -310,7 +311,7 @@
        id="lpetool"
        mode="drag"
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;"
-       unit="px"
+       unit="mm"
        show_bbox="1" />
     <eventcontext
        id="text"
@@ -321,7 +322,7 @@
        use_svg2="1"
        style="line-height:1.25;font-family:sans-serif;font-size:32px;writing-mode:tb-rl"
        selcue="1"
-       align_mode="0" />
+       align_mode="1" />
     <eventcontext
        id="nodes"
        selcue="1"
@@ -337,8 +338,8 @@
        live_outline="1"
        live_objects="1"
        show_helperpath="0"
-       x="972.0092781264"
-       y="279.3388148606"
+       x="150.584206941068"
+       y="135.323387768905"
        edit_clipping_paths="0"
        edit_masks="0" />
     <eventcontext
@@ -408,7 +409,7 @@
        mode="drag" />
     <group
        id="pages"
-       move_objects="0" />
+       move_objects="1" />
   </group>
   <group
      id="palette">
@@ -566,17 +567,18 @@
        palette="Inkscape default">
       <group
          id="pinned"
-         none="1"
+         none="0"
          rgb000000="1"
-         black="1"
+         black="0"
          rgb808080="1"
-         gray-50="1"
+         gray-50="0"
          rgbffffff="1"
-         white="1" />
+         white="0" />
     </group>
   </group>
   <group
-     id="dialogs">
+     id="dialogs"
+     traceliveUpdate="1">
     <group
        id="toolbox" />
     <group
@@ -613,7 +615,7 @@
     <group
        id="preferences"
        state="1"
-       page="52" />
+       page="24" />
     <group
        id="gradienteditor" />
     <group
@@ -625,7 +627,7 @@
        path="">
       <group
          id="exportarea"
-         value="page" />
+         value="selection" />
       <group
          id="defaultxdpi" />
       <group
@@ -633,29 +635,29 @@
          value="page" />
       <group
          id="defaultdpi"
-         value="120" />
+         value="96" />
     </group>
     <group
        id="save_as"
        default="org.inkscape.output.svg.inkscape"
        append_extension="1"
        enable_preview="1"
-       path="/home/novores/ldtqn-jabar/kibar/aksi_donor_darah"
+       path="/home/novores/ldtqn-jabar/Kantor/syarat_kesbangpol"
        use_current_dir="1" />
     <group
        id="save_copy"
-       default=""
+       default="org.inkscape.output.pdf.cairorenderer"
        append_extension="1"
        enable_preview="1"
-       path="" />
+       path="/home/novores/ldtqn-jabar" />
     <group
        id="open"
        enable_preview="1"
-       path="/home/novores/Documents" />
+       path="/home/novores/kDrive/Dokumen/project-design/bertiplus/" />
     <group
        id="import"
        enable_preview="1"
-       path="/home/novores/Pictures/foto-santunan/"
+       path="/home/novores/Downloads/"
        ask="0"
        ask_svg="1"
        link="embed"
@@ -670,18 +672,19 @@
        dotrace="0"
        fillrect="0"
        imax="1"
-       jmax="94"
+       jmax="1"
        fillwidth="65.1182362204725"
        fillheight="57.5591811023622"
        pick_to_color="1"
        pick_to_presence="1"
-       rotate_per_j="0"
-       rotate_per_i="180" />
+       rotate_per_j="0.5"
+       rotate_per_i="180"
+       shiftx_per_j="2.3" />
     <group
        id="gridtiler"
        SpacingType="20"
-       XPad="8.4"
-       YPad="0" />
+       XPad="319.818708661418"
+       YPad="162.18091" />
     <group
        id="extension-error"
        show-on-startup="0" />
@@ -716,7 +719,8 @@
        id="undo-history" />
     <group
        id="objects"
-       expand_to_layer="1" />
+       expand_to_layer="1"
+       layers_only="0" />
     <group
        id="livepatheffect"
        showexperimental="1" />
@@ -1024,7 +1028,7 @@
        snap-bbox="1"
        snap-bbox-edge="1"
        snap-bbox-corner="1"
-       snap-bbox-edge-midpoint="1"
+       snap-bbox-edge-midpoint="0"
        snap-bbox-center="0"
        simple-snap-bbox="1"
        snap-others="1"
@@ -1038,19 +1042,19 @@
        snap-grid="1"
        snap-grid-line="1"
        snap-guide="1"
-       snap-node-category="1"
-       snap-path="1"
+       snap-node-category="0"
+       snap-path="0"
        snap-path-intersection="0"
-       snap-node-cusp="1"
-       snap-node-smooth="1"
-       snap-line-midpoint="1"
+       snap-node-cusp="0"
+       snap-node-smooth="0"
+       snap-line-midpoint="0"
        snap-line-tangential="0"
        snap-line-perpendicular="0"
-       simple-snap-nodes="1"
-       snap-alignment="1"
+       simple-snap-nodes="0"
+       snap-alignment="0"
        snap-alignment-self="0"
-       snap-distribution="1"
-       simple-snap-alignment="1" />
+       snap-distribution="0"
+       simple-snap-alignment="0" />
   </group>
   <group
      id="extensions"
@@ -1071,17 +1075,17 @@
      org.inkscape.render.calendar.tab="localization"
      org.inkscape.render.calendar.year="2024"
      org.inkscape.template.prefab.svg="shape_prefab_11_diamond_target.svg"
-     org.inkscape.template.paper.max="42.0"
-     org.inkscape.template.paper.min="30.0"
-     org.inkscape.template.paper.unit="in"
+     org.inkscape.template.paper.max="297.0"
+     org.inkscape.template.paper.min="210.0"
+     org.inkscape.template.paper.unit="mm"
      org.inkscape.input.eps.autorotate="None"
      org.inkscape.template.paper.orientation="land"
      org.inkscape.template.video.height="4320.0"
      org.inkscape.template.video.unit="px"
      org.inkscape.template.video.width="7680.0"
-     org.inkscape.template.social.height="1350.0"
+     org.inkscape.template.social.height="720.0"
      org.inkscape.template.social.unit="px"
-     org.inkscape.template.social.width="1080.0"
+     org.inkscape.template.social.width="720.0"
      org.inkscape.template.digital.height="768.0"
      org.inkscape.template.digital.unit="px"
      org.inkscape.template.digital.width="1024.0"
@@ -1157,15 +1161,31 @@
      org.inkscape.effect.filter.Solarize.__live_effect__="0"
      org.inkscape.effect.filter.SimpleBlend.blendmode="normal"
      org.inkscape.effect.filter.Brilliance.invert="0"
-     org.inkscape.effect.filter.LightnessContrast.contrast="-42.3123019558566" />
+     org.inkscape.effect.filter.LightnessContrast.contrast="-42.3123019558566"
+     org.inkscape.generate.printing_marks.where="selection"
+     org.inkscape.generate.printing_marks.unit="px"
+     org.inkscape.generate.printing_marks.tab="pos"
+     org.inkscape.effect.guides_creator.guides_preset="custom"
+     org.inkscape.effect.guides_creator.margins_preset="custom"
+     org.inkscape.effect.guides_creator.header_margin="10"
+     org.inkscape.effect.guides_creator.footer_margin="10"
+     org.inkscape.effect.guides_creator.left_margin="10"
+     org.inkscape.effect.guides_creator.right_margin="10"
+     org.inkscape.effect.guides_creator.tab="diagonal_guides"
+     org.inkscape.effect.guides_creator.__live_effect__="0"
+     org.inkscape.effect.guides_creator.ul="0"
+     org.inkscape.effect.guides_creator.ur="1"
+     org.inkscape.generate.printing_marks.page_info="1"
+     org.inkscape.output.pdf.cairorenderer.PDFversion="PDF-1.5"
+     org.inkscape.output.pdf.cairorenderer.textToPath="paths" />
   <group
      id="desktop"
-     style="-inkscape-font-specification:Arial;font-family:Arial;font-size:16px;letter-spacing:0px;line-height:1;paint-order:fill markers stroke;text-decoration-color:#000000;stop-color:#000000;stroke-width:4.70100145;fill:#ff8800;fill-opacity:0.42401722">
+     style="-inkscape-font-specification:'Arial, @wght=700';font-family:Arial;font-size:48.95962143px;letter-spacing:0px;line-height:0.9;paint-order:fill markers stroke;text-decoration-color:#000000;stop-color:#000000;stroke-width:44.01146457;fill:#f4c500;text-anchor:middle;text-align:center;stroke-linecap:round;-inkscape-stroke:none;font-variation-settings:'wght' 700">
     <group
-       width="1350"
-       height="723"
-       x="6"
-       y="35"
+       width="878"
+       height="730"
+       x="0"
+       y="0"
        maximized="1"
        fullscreen="0"
        id="geometry" />
@@ -1188,7 +1208,7 @@
      id="toolbox"
      icononly="1"
      secondary="1"
-     simplesnap="0"
+     simplesnap="1"
      small="1">
     <group
        id="tools"
@@ -1277,12 +1297,16 @@
      language="" />
   <group
      id="live_effects"
-     flattening="0" />
+     flattening="0">
+    <group
+       id="powerstroke"
+       width="20.7236048178292" />
+  </group>
   <group
      id="theme"
-     defaultPreferDarkTheme="0"
+     defaultPreferDarkTheme="1"
      defaultIconTheme="Papirus-Dark"
-     defaultGtkTheme="Catppuccin-Mocha-BL"
+     defaultGtkTheme="Orchis-Green-Compact"
      narrowSpinButton="1"
      preferDarkTheme="1"
      darkTheme="1"
@@ -1290,13 +1314,19 @@
      symbolicDefaultBaseColors="1"
      symbolicDefaultHighColors="1"
      syntax-color-theme="inkscape-dark"
-     gtkTheme="Catppuccin-Mocha-Standard-Green-Dark">
+     fontscale="100">
     <group
        id="multicolor"
-       symbolicBaseColor="3958107135"
-       symbolicSuccessColor="10029823"
+       symbolicBaseColor="255"
+       symbolicSuccessColor="10029567"
        symbolicWarningColor="4279865599"
        symbolicErrorColor="10086143" />
+    <group
+       id="Papirus-Light"
+       symbolicBaseColor="4294967295"
+       symbolicSuccessColor="2177471999"
+       symbolicWarningColor="4223675903"
+       symbolicErrorColor="4098045695" />
   </group>
   <group
      id="gradient-edit"
@@ -1304,5 +1334,5 @@
   <group
      id="color_scales"
      wheel_vis_hsl="1"
-     wheel_vis_hsv="0" />
+     wheel_vis_hsv="1" />
 </inkscape>

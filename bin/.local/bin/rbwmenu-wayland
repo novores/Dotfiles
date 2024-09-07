@@ -9,7 +9,7 @@ TERM="st -e"
 # How long the password noti will last for option 3
 # 1 second = 1000
 notiduration="10000"
-dmenu="fuzzel --dmenu"
+dmenu="rofi -dmenu -sync"
 clipboard_cmd="wl-copy"
 
 [ ! -f "$HOME/.config/rbw/config.json" ] && notify-send -i bitwarden -t 15000 "You haven't configured rbw yet" "Run \"rbw config set email your_bit_warden_login_email\" from terminal to config. Once that's done, start rbwmenu again" && exit 1
@@ -35,10 +35,10 @@ nopass () { printf "%s" "$getlogin" | $clipboard_cmd\
 }
 
 haveloginandpass () {
-    printf "%s" "$getlogin" | $clipboard_cmd; sleep 10; wl-copy --clear
+    printf "%s" "$getlogin" | $clipboard_cmd # ; sleep 10; wl-copy --clear
     clickme=$(notify-send -i bitwarden -t "$notiduration" --action="default,Reply" "Username copied to clipboard" "Click this to copy password to clipboard\n\n<b>This notification will last for "$((notiduration/1000))" seconds</b>")
     [ "$clickme" = "1" ] && exit 1
-    [ "$clickme" = "2" ] && printf "%s" "$getpass" | $clipboard_cmd
+    [ "$clickme" = "default" ] && printf "%s" "$getpass" | $clipboard_cmd
     exit
 }
 
