@@ -1,19 +1,18 @@
 # Introduction
 
-<<<<<<< HEAD
-bspwm dotfiles, take what you need!
-=======
 it's my personal dotfiles, take what you need!
->>>>>>> 14b25b792ac60e1134c11cb587550c746e92d761
 
 ## https://user-images.githubusercontent.com/71489102/167232838-dfa1b8f0-9697-4b46-bbe3-30329139ce31.mp4
 
 # Installation
 
+```bash
+git clone https://github.com/novores/dotfiles ~/dotfiles && stow ~/dotfiles
+```
 you need 'stow' package for installation. than run:
 
 ```bash
-git clone https://github.com/novores/dotfiles ~/dotfiles && stow ~/dotfiles
+stow ~/dotfiles/<name of package>
 ```
 
 list of configs in this repo:

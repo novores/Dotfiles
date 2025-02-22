@@ -10,9 +10,6 @@ default-timeout=5000
 icons=1
 layer=overlay
 
-on-button-left=dismiss
-on-button-middle=none
-on-button-right=dismiss-all
 on-touch=dismiss
 on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/message.oga
 

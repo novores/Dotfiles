@@ -1,55 +1,19 @@
-# Lines configured by zsh-newuser-install
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+export COLORTERM="truecolor"
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+
 setopt beep
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
 zstyle :compinstall filename '/home/novores/.zshrc'
 zstyle ':completion:*' menu select
 
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-# set nnn's environments
-set nnn plugin env
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='l:launch;p:preview-tabbed;n:nuke;m:nmount'
-export NNN_OPENER='nuke'
-
-# nnn functions
-
-n () {
-    # Block nesting of nnn in subshells
-    if [[ "${NNNLVL:-0}" -ge 1 ]]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-    # see. To cd on quit only on ^G, remove the "export" and make sure not to
-    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    # The backslash allows one to alias n to nnn if desired without making an
-    # infinitely recursive alias
-    nnn -e "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-
 
 # set default text editor
 export EDITOR='nvim'
@@ -61,7 +25,6 @@ export LC_COLLATE="C"
 # generate zoxide
 eval "$(zoxide init zsh)"
 eval "$(mcfly init zsh)"
-# enable terminal to use custom color
 
 # FUNCTIONS
 cam(){
@@ -72,7 +35,7 @@ casts () {
   asciinema rec $FILE/$1$(date +%s).cast 
 }
 
-comp () {
+suckless () {
   if [ -e config.h ]; then
     rm config.h
     sudo make install 
@@ -85,6 +48,14 @@ find_largest_files() {
     du -h -x -s -- * | sort -r -h | head -20;
 }
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 # autostart tmux
 if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
     tmux attach || tmux >/dev/null 2>&1
@@ -98,7 +69,8 @@ alias tgpt="tgpt --provider duckduckgo"
 # alias vifm="vifmrun"
 alias blue="bluetoothctl"
 alias N='sudo -E nnn -dH'
-alias ls="ls --color=auto"
+alias ls="eza"
+alias grep="rg"
 alias wsh="wiki-search-html"
 alias ws='wiki-search'
 alias wws="wormhole-william send"

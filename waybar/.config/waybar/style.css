@@ -55,6 +55,10 @@ tooltip {
     color: #cdd6f4;
 }
 
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
 #window,
 #clock,
 #battery,
@@ -77,16 +81,8 @@ tooltip {
     color: #eba0ac;
 }
 
-#tray {
-}
-
 #workspaces {
   margin: 0px 10px;
-}
-
-#window {
-    margin-left: 60px;
-    margin-right: 60px;
 }
 
 #clock {

@@ -1,5 +1,5 @@
-import = ["/home/novores/.config/alacritty/catppuccin.toml"]
-
+migrate = ["/home/novores/.config/alacritty/catppuccin.toml"]
+import
 [window]
 opacity = 0.8
 

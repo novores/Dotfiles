@@ -13,20 +13,22 @@ if not os.path.exists(config.configdir / "theme.py"):
 if os.path.exists(config.configdir / "theme.py"):
     import theme
     theme.setup(c, 'mocha', True)
-config.load_autoconfig()
 
-# source
 # c.url.searchengines = { 'DEFAULT': 'https://apps.disroot.org/?q={}' }
-# key binding
+
 c.fileselect.handler = 'external'
-c.fileselect.folder.command = ["alacritty", "-e", "vifm", "--choose-dir", "{}"]
-c.fileselect.multiple_files.command = ["alacritty", "-e", "vifm", "--choose-files", "{}"]
-c.fileselect.single_file.command = ["alacritty", "-e", "vifm", "--choose-files", "{}"]
+c.fileselect.folder.command = ["foot", "-e", "vifm", "--choose-dir", "{}"]
+c.fileselect.multiple_files.command = ["foot", "-e", "vifm", "--choose-file={}"]
+c.fileselect.single_file.command = ["foot", "-e", "vifm", "--choose-file={}"]
 
-# config.bind('<Alt-Shift-u>', 'spawn --userscript qute-keepassxc --key 4C40A8C5', mode='insert')
-# config.bind('pw', 'spawn --userscript qute-keepassxc --key 4C40A8C5', mode='normal')
-# config.bind('pt', 'spawn --userscript qute-keepassxc --key 4C40A8C5 --totp', mode='normal')
+c.colors.statusbar.insert.bg = '#F38BA8'
+c.colors.statusbar.passthrough.bg = '#F9E2AF'
+c.colors.statusbar.passthrough.fg = '#45475A'
+c.colors.statusbar.insert.bg = '#F38BA8'
+c.colors.webpage.preferred_color_scheme = 'dark'
+c.colors.webpage.bg = '#BAC2DE'
 
+# key binding
 config.bind(';t', 'hint userscript link translate')
 config.bind(';T', 'hint userscript all translate --text')
 config.bind('<Ctrl+T>', 'spawn --userscript translate')

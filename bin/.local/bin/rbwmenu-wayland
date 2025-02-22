@@ -6,6 +6,7 @@
 # Edit your terminal of choice here for the edit function
 TERM="st -e"
 
+rbw unlocked >/dev/null 2>&1 || rbw unlock
 # How long the password noti will last for option 3
 # 1 second = 1000
 notiduration="10000"
@@ -37,8 +38,8 @@ nopass () { printf "%s" "$getlogin" | $clipboard_cmd\
 haveloginandpass () {
     printf "%s" "$getlogin" | $clipboard_cmd # ; sleep 10; wl-copy --clear
     clickme=$(notify-send -i bitwarden -t "$notiduration" --action="default,Reply" "Username copied to clipboard" "Click this to copy password to clipboard\n\n<b>This notification will last for "$((notiduration/1000))" seconds</b>")
-    [ "$clickme" = "1" ] && exit 1
-    [ "$clickme" = "default" ] && printf "%s" "$getpass" | $clipboard_cmd
+     [ "$clickme" = "1" ] && exit 1
+     [ "$clickme" = "default" ] && printf "%s" "$getpass" | $clipboard_cmd
     exit
 }
 

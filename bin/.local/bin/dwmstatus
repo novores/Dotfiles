@@ -83,26 +83,30 @@ mem() {
 }
 
  wlan() {
-  #  #iwd
-  # get_ssid=$(iwctl station wlan0 show | awk 'NR==7 {print $3}')
   dot=".."
-  get_ssid="$(iwctl station wlan0 show | awk -v OFS=' ' '/network/ {print $3,$4}'| cut -c 1-8)"
-  get_rssi="$(iwctl station wlan0 show | grep '\<RSSI\>' | awk '{print $2}')"
+  #  #iwd
+  # get_ssid="$(iwctl station wlan0 show | awk -v OFS=' ' '/network/ {print $3,$4}'| cut -c 1-8)"
+  # get_rssi="$(iwctl station wlan0 show | grep '\<RSSI\>' | awk '{print $2}')"
+  # wpa_supplicant
    # get_ssid=$(wpa_cli status | awk NR==4 | cut -c 6-20) #wpa_supplicant
+  # NetworkManager
+  get_ssid=$(nmcli -f IN-USE,SIGNAL,SSID dev wifi | grep "*" | awk '{print $3}')
+  get_rssi=$(nmcli -f IN-USE,SIGNAL,SSID dev wifi | grep "*" | awk '{print $2}')
+  
  	case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
      up) 
         case $((
-          ($get_rssi <= 0 && $get_rssi >= -30)   * 1 +
-          ($get_rssi < -30 && $get_rssi >= -67)  * 2 +
-          ($get_rssi < -67 && $get_rssi >= -70) * 3 +
-          ($get_rssi < -70 && $get_rssi >= -90) * 4 +
-          ($get_rssi <= -90 ) * 5
+          ($get_rssi >= 0 && $get_rssi <= 30)   * 1 +
+          ($get_rssi > 30 && $get_rssi <= 67)  * 2 +
+          ($get_rssi > 67 && $get_rssi <= 70) * 3 +
+          ($get_rssi > 70 && $get_rssi <= 90) * 4 +
+          ($get_rssi >= 90 ) * 5
           )) in
-          (1) printf   "%s^c$green^ 󰤨 ^c$white^$get_ssid^c$green^^d^" ;;
-          (2) printf   "%s^c$green^ 󰤥 ^c$white^$get_ssid^c$green^^d^" ;;
+          (1) printf   "%s^c$red^ 󰤯 ^c$white^$get_ssid^c$green^^d^" ;;
+          (2) printf   "%s^c$yellow^ 󰤟 ^c$white^$get_ssid^c$green^^d^" ;;
           (3) printf   "%s^c$green^ 󰤢 ^c$white^$get_ssid^c$green^^d^" ;;
-          (4) printf   "%s^c$yellow^ 󰤟 ^c$white^$get_ssid^c$green^^d^" ;;
-          (5) printf   "%s^c$red^ 󰤯 ^c$white^$get_ssid^c$green^^d^" ;;
+          (4) printf   "%s^c$green^ 󰤥 ^c$white^$get_ssid^c$green^^d^" ;;
+          (5) printf   "%s^c$green^ 󰤨 ^c$white^$get_ssid^c$green^^d^" ;;
         esac;;
      down) printf  "%s^c$red^ 󰖪 ^d^" ;;
  	esac
@@ -156,8 +160,17 @@ pomo() {
   fi
 }
 
+temp() {
+ getTemp=$(sensors -u | grep temp1_input | tail -1 | awk '{print $2}'| cut -d '.' -f 1)
+ if  [ $getTemp -ge 75 ]  ; then
+   printf '%s' "^c$red^  ^c$white^$getTemp^d^" 
+ else
+   printf '%s' "^c$green^  ^c$white^$getTemp^d^" 
+ fi
+}
+
 while true; do
-  sleep 1 && xsetroot -name "$(mpd) $(pomo) $(lang) $(volume) $(brightness) $(cpu) $(mem) $(wlan) $(battery) $(clock)"
+  sleep 1 && xsetroot -name "$(mpd) $(lang) $(volume) $(brightness) $(temp) $(mem) $(wlan) $(battery) $(clock)"
 done
 
 # vim:ft=bash
